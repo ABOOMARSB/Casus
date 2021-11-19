@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CompanyRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,6 +22,11 @@ class Company
      * @ORM\Column(type="string", length=75)
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $companySlug;
 
     /**
      * @ORM\Column(type="text")
@@ -52,11 +56,18 @@ class Company
     /**
      * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="company_id")
      */
-    private $deals;
+    private $deal;
 
-    public function __construct()
+
+    public function __construct($deal)
     {
-        $this->deals = new ArrayCollection();
+        $this->name = $deal['company_name'];
+        $this->companySlug = $deal['company_slug'];
+        $this->street = $deal['locations.street'];
+        $this->zip = $deal['locations.zip'];
+        $this->latitude = $deal['latitude'];
+        $this->longitude = $deal['longitude'];
+        $this->website = $deal['website'];
     }
 
     public function getId(): ?int
@@ -72,6 +83,18 @@ class Company
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCompanySlug(): ?string
+    {
+        return $this->companySlug;
+    }
+
+    public function setCompanySlug(string $companySlug): self
+    {
+        $this->companySlug = $companySlug;
 
         return $this;
     }
@@ -165,4 +188,6 @@ class Company
 
         return $this;
     }
+
+
 }

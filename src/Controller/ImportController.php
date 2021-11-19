@@ -8,12 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Deal;
+use App\Entity\Company;
 
 class ImportController extends AbstractController
     {
-        private const API = "http://media.socialdeal.nl/demo/deals.json";
-        private const API_details = "http://media.socialdeal.nl/demo/details.json";
-
+        private const API = "https://media.socialdeal.nl/demo/deals.json";
+        private const API_details = "https://media.socialdeal.nl/demo/details.json";
 
         /** 
          * @Route("/import", name="import")
@@ -29,7 +29,6 @@ class ImportController extends AbstractController
             {
                 $dealdetail = json_decode(file_get_contents(self::API_details), true);
                 $description = new Deal($deal);
-                $d = '';
                 $description->setCreatedAt($faker->dateTimeBetween('- 5months'));
 
 //                if($doctrine->getRepository('App\Entity\Deal')->findBy(array('unique' => $this->$deal->getDealUnique())))
@@ -40,8 +39,9 @@ class ImportController extends AbstractController
                     }
                     else
                     {
-                        $description->setDescription($faker->realText(300, 2));
+                        $description->setDescription($faker->realText(300));
                     }
+
 
                 $entityManager->persist($description);
             }
