@@ -1,0 +1,476 @@
+*
+{
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+html
+{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+body
+{
+    width: 1065px;
+    margin: auto;
+    padding: 0;
+    font-family: roboto, sans-serif;
+}
+
+.container
+{
+    padding: 0 30px 0 30px;
+}
+
+nav
+{
+    display: block;
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    /*background-color: white;*/
+    z-index: 110;
+}
+
+nav a:link,
+nav a:visited
+{
+    display: block;
+    color: #9F9F9F;
+    margin: auto;
+    text-decoration: none;
+    height: 100%;
+}
+
+.categorie
+{
+    margin: auto;
+    float: left;
+    width: calc(100% /8);
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.active, .categorie:hover {
+    color: #0081E9;
+}
+
+.material-icons
+{
+    display: block;
+    font-size: 34px;
+}
+
+.active .material-icons
+{
+    color: #0081E9;
+}
+
+.nav-txt
+{
+    margin-top: 15px;
+}
+
+.active .nav-txt
+{
+   color: #0081E9;
+}
+
+.active::after
+{
+    color: inherit;
+    background-color: currentColor;
+    content: '';
+    width: 100%;
+    height: 4px;
+    border-radius: 16px;
+    position: relative;
+    display: inline-block;
+}
+
+#hide-scrollbar
+{
+    position: relative;
+    display: block;
+}
+
+#hide-scrollbar2
+{
+    position: relative;
+    display: block;
+}
+
+ul
+{
+    list-style-type: none;
+    top: 0;
+    margin: auto;
+    width: 1024px;
+    height: 120px;
+}
+
+li
+{
+    list-style-type: none;
+    height: 100%;
+    width: 100%;
+}
+
+.box
+{
+    width: calc(100%/3);
+    border-radius: 8px;
+    float: left;
+    padding: 18px;
+}
+
+.box:after
+{
+    clear: right;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+}
+
+.box:nth-child(1), .box:nth-child(2)
+{
+    width: 50%;
+}
+
+.box:nth-child(3n+0)
+{
+    clear: left;
+}
+
+.red-ribbon
+{
+    background-color: #c42324;
+    width: 146px;
+    height: 27px;
+    text-align: center;
+    top: 18px;
+    right: -39px;
+    line-height: 16px;
+    position: absolute;
+    z-index: 100;
+    padding: 5px 0;
+    transform: rotate(45deg) translateZ(0);
+    font-size: 18px;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 rgba(0,0, 0, 0.4);
+}
+
+.box:nth-child(1) .red-ribbon, .box:nth-child(2) .red-ribbon
+{
+    width: 193px;
+    height: 36px;
+    text-align: center;
+    top: 25px;
+    right: -48px;
+    font-size: 24px;
+}
+
+.box:nth-child(1) .red-ribbon .discount_amount, .box:nth-child(2) .red-ribbon .discount_amount
+{
+    margin-top: 5px;
+}
+
+.img
+{
+    position: relative;
+    overflow: hidden;
+}
+
+.img:nth-child(1), .img:nth-child(2)
+{
+    width: 100%;
+}
+
+img
+{
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.newToday
+{
+    position: absolute;
+    height: 65px;
+    width: 65px;
+    background-color: #0081E9;
+    color: white;
+    top: 16px;
+    left: 16px;
+    border-radius: 50px;
+    padding-top: 12px;
+    text-align: center;
+    font-weight: 400;
+    font-family: Roboto,sans-serif;
+}
+
+.title
+{
+    font-weight: 500;
+    margin: 30px 0 10px 0;
+    font-size: 20px;
+    float: left;
+    clear: both;
+}
+
+.txt, .company, .city, .sold, .from, .price
+{
+    font-size: 16px;
+}
+
+.txt
+{
+    position: relative;
+}
+
+.company,.city
+{
+    margin-top: 10px;
+    color: #7C7C7C;
+}
+
+.company
+{
+    margin-top: 7px;
+    float: left;
+    clear: both;
+}
+
+.city
+{
+    float: left;
+    clear: both;
+}
+
+.sold
+{
+
+    color: #00AEEA;
+    float: left;
+    clear: left;
+    margin-top: 15px;
+}
+
+.from, .price
+{
+    float: right;
+    margin: 13px 10px 0 0;
+}
+
+.from
+{
+    color: #7C7C7C;
+    text-decoration: line-through;
+    line-height: 24px;
+}
+
+.price
+{
+    color: #40BF4B;
+    font-size: 24px;
+    line-height: 24px;
+
+}
+
+.before
+{
+    font-size: 24px;
+}
+
+.after
+{
+    font-size: 16px;
+    position: relative;
+    top: -2px;
+}
+
+@media only screen and (max-width: 600PX)
+{
+
+    body
+    {
+        max-width: 100%;
+    }
+
+    head
+    {
+        display: none;
+    }
+
+    .container
+    {
+        padding: 37px 0;
+    }
+
+    .categorie
+    {
+        margin: 0;
+        padding: 0;
+        width: auto;
+    }
+
+    nav
+    {
+        background-color: #0081E9;
+        width: 100%;
+        height: 48px;
+        white-space: nowrap;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.239);
+        z-index: 1000;
+        overflow: hidden;
+        position: fixed;
+        margin: 0;
+    }
+
+    nav a:link,
+    nav a:visited
+    {
+        display: block;
+        color: #77BBFF;
+        font-weight: 500;
+        padding: 0 30px !important;
+    }
+
+    .material-icons
+    {
+        display: none;
+    }
+
+    .active::after
+    {
+        color: inherit;
+        background-color: #FFFFFF;
+        content: '';
+        width: 100%;
+        height: 2px;
+        border-radius: 16px;
+        position: relative;
+        display: inline-block;
+        top: -16px;
+    }
+
+    .active .nav-txt
+    {
+        color: #FFFFFF;
+    }
+
+    #hide-scrollbar
+    {
+        overflow: auto;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-height: 68px;
+    }
+
+    #hide-scrollbar2
+    {
+        overflow: auto;
+        position: relative;
+        width: 100%;
+        height: 68px;
+        top: 0;
+    }
+
+    nav ul li a
+    {
+        min-height: 48px;
+        color: #66B3F2;
+        position: relative;
+    }
+
+    ul
+    {
+        padding: 0;
+        height: auto;
+        margin: auto;
+        width: max-content;
+    }
+
+    li
+    {
+        display: inline-block;
+        float: none;
+        padding: 0;
+        width: auto;
+        margin: 0;
+    }
+
+    li a span
+    {
+        font-size: 16px;
+        font-weight: 500;
+
+    }
+
+    .box
+    {
+        width: 100% !important;
+        float: left;
+        padding: 0;
+        border-radius: 0;
+        border: 1px solid #E0E0E0;
+        margin-top: 10px !important;
+    }
+
+    img
+    {
+        position: relative;
+        width: 100% !important;
+        border-radius: 0;
+    }
+
+    .red-ribbon
+    {
+        width: 146px !important;
+        height: 27px !important;
+        top: 18px !important;
+        right: -39px !important;
+
+    }
+
+    .discount_amount
+    {
+        font-size: 18px !important;
+        font-weight: 500 !important;
+        margin-top: 1px !important;
+    }
+
+    .title, .company, .city, .sold, .from, .price
+    {
+        margin-left: 10px !important;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .title
+    {
+        margin-top: 10px !important;
+        font-size: 16px;
+    }
+
+    .txt
+    {
+        position: relative;
+    }
+
+}
+
+
+
