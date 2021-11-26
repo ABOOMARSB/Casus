@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CompanyRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\DealRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,21 +12,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DealController extends AbstractController
 {
-    private const DEALS_AMOUNT_PER_PAGE = 15;
+    private const DEALS_PER_PAGE = 20;
 
     /**
      * @Route("/", name="deal")
      */
-    public function index(DealRepository $dealRepository,PaginatorInterface $paginator, Request $request): Response
+    public function index(DealRepository $dealRepository, CompanyRepository $companyRepository, PaginatorInterface $paginator, Request $request): Response
     {
-//        $deals = (new ImportController())->index();
         $deals = $paginator->paginate(
             $dealRepository->findAll(),
             $request->query->getInt(
                 'page', 1
             ),
-            self::DEALS_AMOUNT_PER_PAGE
+            self::DEALS_PER_PAGE
             );
+        $company = $companyRepository ->findAll();
 
         return $this->render
         (

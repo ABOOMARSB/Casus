@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\DealRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Faker\Factory;
 
 /**
  * @ORM\Entity(repositoryClass=DealRepository::class)
@@ -77,24 +78,11 @@ class Deal
      */
     private $createdAt;
 
-
-    /**
-     * @ORM\ManyToOne(targetEntity=City::class, inversedBy="deals")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $city_id;
-
     /**
      * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="deals")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $company_id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="deals")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category_id;
+    private $company;
 
     public function __construct($deal)
     {
@@ -107,6 +95,7 @@ class Deal
         $this->from_price = $deal['from'];
         $this->is_for_sale = $deal['is_for_sale'];
         $this->is_new_today = $deal['is_new_today'];
+//        $this->company = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -239,42 +228,6 @@ class Deal
         return $this;
     }
 
-    public function getCityId(): ?City
-    {
-        return $this->city_id;
-    }
-
-    public function setCityId(?City $city_id): self
-    {
-        $this->city_id = $city_id;
-
-        return $this;
-    }
-
-    public function getCompanyId(): ?Company
-    {
-        return $this->company_id;
-    }
-
-    public function setCompanyId(?Company $company_id): self
-    {
-        $this->company_id = $company_id;
-
-        return $this;
-    }
-
-    public function getCategoryId(): ?Category
-    {
-        return $this->category_id;
-    }
-
-    public function setCategoryId(?Category $category_id): self
-    {
-        $this->category_id = $category_id;
-
-        return $this;
-    }
-
     public function getPercentDiscount(): float
     {
         $price = $this->new_price;
@@ -320,6 +273,18 @@ class Deal
     public function setCreatedAt(\DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
         return $this;
     }
 }

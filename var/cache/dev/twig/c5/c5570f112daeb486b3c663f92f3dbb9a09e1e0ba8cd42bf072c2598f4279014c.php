@@ -97,7 +97,7 @@ class __TwigTemplate_434a079539a860d61209dd76de34069d86051a371de4b982ed8aaddc289
                 // line 9
                 echo "                    <section>
                         <div class=\"box\">
-                            <div class=\"img\" >
+                            <div class=\"img\">
                                 ";
                 // line 12
                 if (twig_get_attribute($this->env, $this->source, $context["deal"], "shouldShowDiscount", [], "any", false, false, false, 12)) {
@@ -125,34 +125,38 @@ class __TwigTemplate_434a079539a860d61209dd76de34069d86051a371de4b982ed8aaddc289
                 // line 22
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["deal"], "getTitle", [], "any", false, false, false, 22), "html", null, true);
                 echo "</div>
-                            <div class=\"sold\">Verkocht: ";
+                            <div class=\"company\">";
                 // line 23
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["deal"], "getSold", [], "any", false, false, false, 23), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["deal"], "company", [], "any", false, false, false, 23), "name", [], "any", false, false, false, 23), "html", null, true);
+                echo "</div>
+                            <div class=\"sold\">Verkocht: ";
+                // line 24
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["deal"], "getSold", [], "any", false, false, false, 24), "html", null, true);
                 echo "</div>
                             <div class=\"from\">";
-                // line 24
-                echo twig_get_attribute($this->env, $this->source, $context["deal"], "getFromPrice", [], "any", false, false, false, 24);
+                // line 25
+                echo twig_get_attribute($this->env, $this->source, $context["deal"], "getFromPrice", [], "any", false, false, false, 25);
                 echo "</div>
                             <div class=\"price\">";
-                // line 25
-                echo twig_get_attribute($this->env, $this->source, $context["deal"], "getPriceAsHtml", [], "any", false, false, false, 25);
+                // line 26
+                echo twig_get_attribute($this->env, $this->source, $context["deal"], "getPriceAsHtml", [], "any", false, false, false, 26);
                 echo "</div>
                         </div>
                     </section>
                 ";
             }
-            // line 29
+            // line 30
             echo "            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['deal'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 30
+        // line 31
         echo "        </div>
         <div class=\"navigation\">
             ";
-        // line 32
-        echo $this->extensions['Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension']->render($this->env, (isset($context["deals"]) || array_key_exists("deals", $context) ? $context["deals"] : (function () { throw new RuntimeError('Variable "deals" does not exist.', 32, $this->source); })()));
+        // line 33
+        echo $this->extensions['Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension']->render($this->env, (isset($context["deals"]) || array_key_exists("deals", $context) ? $context["deals"] : (function () { throw new RuntimeError('Variable "deals" does not exist.', 33, $this->source); })()));
         echo "
         </div>
     ";
@@ -176,7 +180,7 @@ class __TwigTemplate_434a079539a860d61209dd76de34069d86051a371de4b982ed8aaddc289
 
     public function getDebugInfo()
     {
-        return array (  155 => 32,  151 => 30,  145 => 29,  138 => 25,  134 => 24,  130 => 23,  126 => 22,  121 => 20,  116 => 19,  109 => 15,  105 => 13,  103 => 12,  98 => 9,  95 => 8,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  159 => 33,  155 => 31,  149 => 30,  142 => 26,  138 => 25,  134 => 24,  130 => 23,  126 => 22,  121 => 20,  116 => 19,  109 => 15,  105 => 13,  103 => 12,  98 => 9,  95 => 8,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -191,7 +195,7 @@ class __TwigTemplate_434a079539a860d61209dd76de34069d86051a371de4b982ed8aaddc289
                 {% if deal.getIsForSale == true %}
                     <section>
                         <div class=\"box\">
-                            <div class=\"img\" >
+                            <div class=\"img\">
                                 {% if deal.shouldShowDiscount %}
                                     <div class=\"red-ribbon\">
                                         <span>
@@ -203,6 +207,7 @@ class __TwigTemplate_434a079539a860d61209dd76de34069d86051a371de4b982ed8aaddc289
                                 {{ deal.divIsNew|raw }}
                             </div>
                             <div class=\"title\">{{ deal.getTitle }}</div>
+                            <div class=\"company\">{{ deal.company.name }}</div>
                             <div class=\"sold\">Verkocht: {{ deal.getSold }}</div>
                             <div class=\"from\">{{ deal.getFromPrice|raw }}</div>
                             <div class=\"price\">{{ deal.getPriceAsHtml|raw }}</div>

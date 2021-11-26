@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\CompanyRepository;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=CompanyRepository::class)
@@ -29,12 +30,17 @@ class Company
     private $companySlug;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $checkCompanySlug;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $street;
 
     /**
-     * @ORM\Column(type="string", length=6)
+     * @ORM\Column(type="string", length=7)
      */
     private $zip;
 
@@ -54,20 +60,26 @@ class Company
     private $website;
 
     /**
-     * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="company_id")
+     * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="company")
      */
-    private $deal;
+    private $deals;
 
 
-    public function __construct($deal)
+    static function fromJsonToDB($dealJson, $dealDetail)
     {
-        $this->name = $deal['company_name'];
-        $this->companySlug = $deal['company_slug'];
-        $this->street = $deal['locations.street'];
-        $this->zip = $deal['locations.zip'];
-        $this->latitude = $deal['latitude'];
-        $this->longitude = $deal['longitude'];
-        $this->website = $deal['website'];
+        $company = array_merge($dealJson, $dealDetail);
+        return new self($company);
+    }
+
+    public function __construct($company)
+    {
+        $this->name = $company['company_name'];
+        $this->companySlug = $company['company_slug'];
+        $this->checkCompanySlug = $company['_embedded']['company']['slug'];
+        $this->latitude = $company['deal_map_pointer']['latitude'];
+        $this->longitude = $company['deal_map_pointer']['longitude'];
+        $this->website = $company['_embedded']['company']['website'];
+        $this->deals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,6 +107,17 @@ class Company
     public function setCompanySlug(string $companySlug): self
     {
         $this->companySlug = $companySlug;
+
+        return $this;
+    }
+    public function getCheckCompanySlug(): ?string
+    {
+        return $this->checkCompanySlug;
+    }
+
+    public function setCheckCompanySlug(string $checkCompanySlug): self
+    {
+        $this->checkCompanySlug = $checkCompanySlug;
 
         return $this;
     }
@@ -171,7 +194,7 @@ class Company
     {
         if (!$this->deals->contains($deal)) {
             $this->deals[] = $deal;
-            $deal->setCompanyId($this);
+            $deal->setCompany($this);
         }
 
         return $this;
@@ -181,13 +204,11 @@ class Company
     {
         if ($this->deals->removeElement($deal)) {
             // set the owning side to null (unless already changed)
-            if ($deal->getCompanyId() === $this) {
-                $deal->setCompanyId(null);
+            if ($deal->getCompany() === $this) {
+                $deal->setCompany(null);
             }
         }
 
         return $this;
     }
-
-
 }

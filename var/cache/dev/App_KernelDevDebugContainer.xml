@@ -6051,32 +6051,35 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.KfbR3DY.Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.wSEWTRH" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.2H0cqte" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="companyRepository" type="service_closure" id="App\Repository\CompanyRepository"/>
         <argument key="dealRepository" type="service_closure" id="App\Repository\DealRepository"/>
         <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
-    <service id=".service_locator.i3AV5c5" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.jk_jEuI" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="cityRepository" type="service_closure" id="App\Repository\CityRepository"/>
+        <argument key="companyRepository" type="service_closure" id="App\Repository\CompanyRepository"/>
         <argument key="dealRepository" type="service_closure" id="App\Repository\DealRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.SI4w6c1" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.xliTBTL" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\DealController::index" type="service_closure" id=".service_locator.wSEWTRH"/>
-        <argument key="App\Controller\ImportController::index" type="service_closure" id=".service_locator.i3AV5c5"/>
+        <argument key="App\Controller\DealController::index" type="service_closure" id=".service_locator.2H0cqte"/>
+        <argument key="App\Controller\ImportController::index" type="service_closure" id=".service_locator.jk_jEuI"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="App\Kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
-        <argument key="App\Controller\DealController:index" type="service_closure" id=".service_locator.wSEWTRH"/>
-        <argument key="App\Controller\ImportController:index" type="service_closure" id=".service_locator.i3AV5c5"/>
+        <argument key="App\Controller\DealController:index" type="service_closure" id=".service_locator.2H0cqte"/>
+        <argument key="App\Controller\ImportController:index" type="service_closure" id=".service_locator.jk_jEuI"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel:terminate" type="service_closure" id=".service_locator.KfwZsne"/>
@@ -6590,12 +6593,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.SI4w6c1"/>
+      <argument type="service" id=".service_locator.xliTBTL"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.SI4w6c1"/>
+      <argument type="service" id=".service_locator.xliTBTL"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface">
       <argument type="collection"/>
@@ -7451,7 +7454,7 @@
     <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.SI4w6c1"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.xliTBTL"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -7492,8 +7495,8 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator._5g_Wvc" alias=".service_locator.KfwZsne"/>
     <service id=".service_locator.JBAFp66" alias=".service_locator.KfbR3DY"/>
-    <service id=".service_locator.E7TXJB3" alias=".service_locator.wSEWTRH"/>
-    <service id=".service_locator.H6.ONFv" alias=".service_locator.i3AV5c5"/>
+    <service id=".service_locator.L9Bq50M" alias=".service_locator.2H0cqte"/>
+    <service id=".service_locator.eYgnRLh" alias=".service_locator.jk_jEuI"/>
     <service id=".service_locator.NK827YO" alias=".service_locator.W9y3dzm"/>
   </services>
 </container>

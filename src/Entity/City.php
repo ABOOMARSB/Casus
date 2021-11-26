@@ -27,12 +27,29 @@ class City
     /**
      * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="city_id")
      */
-    private $deals;
+    private $deal;
 
-    public function __construct()
+    /**
+     * @ORM\ManyToOne(targetEntity=Deal::class, inversedBy="cityId")
+     */
+    private $getDeal;
+
+    public function __construct($deal)
     {
-        $this->deals = new ArrayCollection();
+        $this->name = $deal['city_name'];
     }
+
+//    public function getDeal(): ?Deal
+//    {
+//        return $this->getDeal;
+//    }
+//
+//    public function setDeal(?Deal $getDeal): self
+//    {
+//        $this->getDeal = $getDeal;
+//
+//        return $this;
+//    }
 
     public function getId(): ?int
     {
@@ -51,33 +68,5 @@ class City
         return $this;
     }
 
-    /**
-     * @return Collection|Deal[]
-     */
-    public function getDeals(): Collection
-    {
-        return $this->deals;
-    }
 
-    public function addDeal(Deal $deal): self
-    {
-        if (!$this->deals->contains($deal)) {
-            $this->deals[] = $deal;
-            $deal->setCityId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDeal(Deal $deal): self
-    {
-        if ($this->deals->removeElement($deal)) {
-            // set the owning side to null (unless already changed)
-            if ($deal->getCityId() === $this) {
-                $deal->setCityId(null);
-            }
-        }
-
-        return $this;
-    }
 }

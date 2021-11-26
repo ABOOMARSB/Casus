@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\DealRepository;
+use App\Repository\CompanyRepository;
+use App\Repository\CityRepository;
 use Faker\Factory;
+use Faker\Provider\Address;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,34 +21,64 @@ class ImportController extends AbstractController
         /** 
          * @Route("/import", name="import")
          */
-        public function index(DealRepository $dealRepository): Response
+        public function index(DealRepository $dealRepository, CompanyRepository $companyRepository, CityRepository $cityRepository): Response
         {
             $entityManager = $this->getDoctrine()->getManager();
             $dealJson = json_decode(file_get_contents(self::API), true);
+            $dealdetail = json_decode(file_get_contents(self::API_details), true);
             $faker = Factory::create('nl_NL');
 
 
+
+            foreach ($dealJson['deals'] as $index=>$company)
+            {
+                $companyObject = Company::fromJsonToDB( $company, $dealdetail);
+                $detailCompanySlug = $dealdetail['_embedded']['company']['slug'];
+                $dealCompanySlug = $dealJson['deals'][$index]['company_slug'];
+
+                if ($detailCompanySlug === $dealCompanySlug)
+                {
+                    $companyObject->setStreet($dealdetail['_embedded']['company']['locations'][0]['street'])
+                                  ->setZip($dealdetail['_embedded']['company']['locations'][0]['zip'])
+                                  ->setWebsite($dealdetail['_embedded']['company']['website']);
+                }
+
+                else
+                {
+                    $companyObject->setStreet($faker->streetName)
+                                  ->setZip(Address::postcode())
+                                  ->setWebsite($faker->url);
+                }
+                $com = $companyObject;
+                $entityManager->persist($companyObject);
+
+//                $queryBuilder = $entityManager->createQuery('SELECT company.id FROM App\Entity\Company company');
+//                dd($queryBuilder->getResult());
+
+//                $description->setCompany($queryBuilder->getResult());
+//                dd($description);
+
+            }
+
             foreach ($dealJson['deals'] as $deal)
             {
-                $dealdetail = json_decode(file_get_contents(self::API_details), true);
                 $description = new Deal($deal);
-                $description->setCreatedAt($faker->dateTimeBetween('- 5months'));
+                $description->setCreatedAt($faker->dateTimeBetween('- 5months'))
+                            ->setCompany($companyObject);
 
 //                if($doctrine->getRepository('App\Entity\Deal')->findBy(array('unique' => $this->$deal->getDealUnique())))
 //                {
-                    if ($dealdetail['list_unique'] == $deal['unique'])
-                    {
-                        $description->setDescription($dealdetail['description']);
-                    }
-                    else
-                    {
-                        $description->setDescription($faker->realText(300));
-                    }
-
+                if ($dealdetail['list_unique'] == $deal['unique'])
+                {
+                    $description->setDescription($dealdetail['description']);
+                }
+                else
+                {
+                    $description->setDescription($faker->realText(300));
+                }
 
                 $entityManager->persist($description);
             }
-
 
             $entityManager->flush();
 
