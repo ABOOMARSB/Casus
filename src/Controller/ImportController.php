@@ -30,56 +30,90 @@ class ImportController extends AbstractController
 
 
 
-            foreach ($dealJson['deals'] as $index=>$company)
-            {
-                $companyObject = Company::fromJsonToDB( $company, $dealdetail);
+            foreach ($dealJson['deals'] as $index=>$data) {
+                $companyObject = Company::fromJsonToDB($data, $dealdetail);
                 $detailCompanySlug = $dealdetail['_embedded']['company']['slug'];
                 $dealCompanySlug = $dealJson['deals'][$index]['company_slug'];
 
-                if ($detailCompanySlug === $dealCompanySlug)
-                {
-                    $companyObject->setStreet($dealdetail['_embedded']['company']['locations'][0]['street'])
-                                  ->setZip($dealdetail['_embedded']['company']['locations'][0]['zip'])
-                                  ->setWebsite($dealdetail['_embedded']['company']['website']);
+                $resultDeal = $this
+                    ->getDoctrine()
+                    ->getRepository('App:Deal')
+                    ->findBy(['deal_unique' => $data['unique']]);
+//                $resultCompany = $this
+//                    ->getDoctrine()
+//                    ->getRepository('App:Company')
+//                    ->find(['name']);
+
+                if (empty($resultDeal)) {
+
+//                    if ($resultCompany) {
+
+                        if ($dealCompanySlug === $detailCompanySlug) {
+                            $companyObject->setCheckCompanySlug($detailCompanySlug);
+                        } else {
+                            $companyObject->setCheckCompanySlug($faker->slug);
+                        }
+
+                        if ($detailCompanySlug === $dealCompanySlug) {
+                            $companyObject->setStreet($dealdetail['_embedded']['company']['locations'][0]['street'])
+                                ->setZip($dealdetail['_embedded']['company']['locations'][0]['zip'])
+                                ->setWebsite($dealdetail['_embedded']['company']['website']);
+                        } else {
+                            $companyObject->setStreet($faker->streetName)
+                                ->setZip(Address::postcode())
+                                ->setWebsite($faker->url);
+                        }
+
+                        $entityManager->persist($companyObject);
+                    }
+                    $description = new Deal($data);
+                    $description->setCreatedAt($faker->dateTimeBetween('- 5months'))
+                        ->setCompany($companyObject);
+
+                    if ($dealCompanySlug == $detailCompanySlug) {
+                        echo $dealCompanySlug;
+                        $description->setCompany($companyObject);
+                    }
+
+                    if ($dealdetail['list_unique'] == $data['unique']) {
+                        $description->setDescription($dealdetail['description']);
+                    } else {
+                        $description->setDescription($faker->realText(300));
+                    }
+
+                    $entityManager->persist($description);
                 }
 
-                else
-                {
-                    $companyObject->setStreet($faker->streetName)
-                                  ->setZip(Address::postcode())
-                                  ->setWebsite($faker->url);
-                }
-                $com = $companyObject;
-                $entityManager->persist($companyObject);
-
-//                $queryBuilder = $entityManager->createQuery('SELECT company.id FROM App\Entity\Company company');
-//                dd($queryBuilder->getResult());
-
-//                $description->setCompany($queryBuilder->getResult());
-//                dd($description);
-
-            }
-
-            foreach ($dealJson['deals'] as $deal)
-            {
-                $description = new Deal($deal);
-                $description->setCreatedAt($faker->dateTimeBetween('- 5months'))
-                            ->setCompany($companyObject);
-
-//                if($doctrine->getRepository('App\Entity\Deal')->findBy(array('unique' => $this->$deal->getDealUnique())))
-//                {
-                if ($dealdetail['list_unique'] == $deal['unique'])
-                {
-                    $description->setDescription($dealdetail['description']);
-                }
-                else
-                {
-                    $description->setDescription($faker->realText(300));
-                }
-
-                $entityManager->persist($description);
-            }
-
+                //            foreach ($dealJson['deals'] as $deal)
+                //            {
+                //                $description = new Deal($deal);
+                //                $description->setCreatedAt($faker->dateTimeBetween('- 5months'))
+                //                            ->setCompany($companyObject);
+                ////                if ($dealCompanySlug == $detailCompanySlug)
+                ////                {
+                ////                    echo $dealCompanySlug;
+                //////                    $description->setCompany($companyObject);
+                //////                    dd($echo);
+                ////
+                ////                }
+                ////                else {
+                ////                    dd("Ya kalb!");
+                ////                }
+                //
+                //
+                ////                if($doctrine->getRepository('App\Entity\Deal')->findBy(array('unique' => $this->$deal->getDealUnique())))
+                ////                {
+                //                if ($dealdetail['list_unique'] == $deal['unique'])
+                //                {
+                //                    $description->setDescription($dealdetail['description']);
+                //                }
+                //                else
+                //                {
+                //                    $description->setDescription($faker->realText(300));
+                //                }
+                //
+                //                $entityManager->persist($description);
+//            }
             $entityManager->flush();
 
             return $this->render('import/index.html.twig', [
