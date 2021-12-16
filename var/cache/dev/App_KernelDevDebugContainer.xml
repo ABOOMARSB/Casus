@@ -22,6 +22,7 @@
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
       <parameter key="DoctrineFixturesBundle">Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle</parameter>
+      <parameter key="MercurySeriesFlashyBundle">MercurySeries\FlashyBundle\MercurySeriesFlashyBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -75,6 +76,10 @@
       <parameter key="DoctrineFixturesBundle" type="collection">
         <parameter key="path">/var/www/html/casus/vendor/doctrine/doctrine-fixtures-bundle</parameter>
         <parameter key="namespace">Doctrine\Bundle\FixturesBundle</parameter>
+      </parameter>
+      <parameter key="MercurySeriesFlashyBundle" type="collection">
+        <parameter key="path">/var/www/html/casus/vendor/mercuryseries/flashy-bundle/src</parameter>
+        <parameter key="namespace">MercurySeries\FlashyBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -2112,6 +2117,7 @@
           <argument>/var/www/html/casus/vendor/symfony/debug-bundle/translations</argument>
           <argument>/var/www/html/casus/vendor/symfony/maker-bundle/src/translations</argument>
           <argument>/var/www/html/casus/vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
+          <argument>/var/www/html/casus/vendor/mercuryseries/flashy-bundle/src/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -2132,6 +2138,7 @@
             <argument>vendor/symfony/debug-bundle/translations</argument>
             <argument>vendor/symfony/maker-bundle/src/translations</argument>
             <argument>vendor/doctrine/doctrine-fixtures-bundle/translations</argument>
+            <argument>vendor/mercuryseries/flashy-bundle/src/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -5088,6 +5095,14 @@
         <argument>!KnpPaginator</argument>
       </call>
       <call method="addPath">
+        <argument>/var/www/html/casus/vendor/mercuryseries/flashy-bundle/src/Resources/views</argument>
+        <argument>MercurySeriesFlashy</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/casus/vendor/mercuryseries/flashy-bundle/src/Resources/views</argument>
+        <argument>!MercurySeriesFlashy</argument>
+      </call>
+      <call method="addPath">
         <argument>/var/www/html/casus/templates</argument>
       </call>
       <call method="addPath">
@@ -5718,6 +5733,13 @@
     <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory">
       <tag name="doctrine.fixtures.purger_factory" alias="default"/>
     </service>
+    <service id="mercuryseries_flashy.flashy_notifier" class="MercurySeries\FlashyBundle\FlashyNotifier" public="true">
+      <argument type="service" id="mercuryseries_flashy.symfony_session_store"/>
+      <argument>mercuryseries_flashy_notification</argument>
+    </service>
+    <service id="mercuryseries_flashy.symfony_session_store" class="MercurySeries\FlashyBundle\SymfonySessionStore">
+      <argument type="service" id="request_stack"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DealController" class="App\Controller\DealController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DealController" class="App\Controller\DealController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\DealController" class="App\Controller\DealController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6059,19 +6081,17 @@
         <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
     </service>
-    <service id=".service_locator.jk_jEuI" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.6hWhwyj" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="cityRepository" type="service_closure" id="App\Repository\CityRepository"/>
-        <argument key="companyRepository" type="service_closure" id="App\Repository\CompanyRepository"/>
-        <argument key="dealRepository" type="service_closure" id="App\Repository\DealRepository"/>
+        <argument key="flashy" type="service_closure" id="mercuryseries_flashy.flashy_notifier"/>
       </argument>
     </service>
-    <service id=".service_locator.xliTBTL" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.icGLanl" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\DealController::index" type="service_closure" id=".service_locator.2H0cqte"/>
-        <argument key="App\Controller\ImportController::index" type="service_closure" id=".service_locator.jk_jEuI"/>
+        <argument key="App\Controller\ImportController::index" type="service_closure" id=".service_locator.6hWhwyj"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="App\Kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
@@ -6079,7 +6099,7 @@
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
         <argument key="App\Controller\DealController:index" type="service_closure" id=".service_locator.2H0cqte"/>
-        <argument key="App\Controller\ImportController:index" type="service_closure" id=".service_locator.jk_jEuI"/>
+        <argument key="App\Controller\ImportController:index" type="service_closure" id=".service_locator.6hWhwyj"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel:terminate" type="service_closure" id=".service_locator.KfwZsne"/>
@@ -6593,12 +6613,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.xliTBTL"/>
+      <argument type="service" id=".service_locator.icGLanl"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.xliTBTL"/>
+      <argument type="service" id=".service_locator.icGLanl"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface">
       <argument type="collection"/>
@@ -7452,9 +7472,11 @@
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
     <service id="Knp\Component\Pager\PaginatorInterface" alias="knp_paginator"/>
+    <service id="mercuryseries_flashy.session_store" alias="mercuryseries_flashy.symfony_session_store"/>
+    <service id="MercurySeries\FlashyBundle\FlashyNotifier" alias="mercuryseries_flashy.flashy_notifier"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.xliTBTL"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.icGLanl"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -7496,7 +7518,7 @@
     <service id=".service_locator._5g_Wvc" alias=".service_locator.KfwZsne"/>
     <service id=".service_locator.JBAFp66" alias=".service_locator.KfbR3DY"/>
     <service id=".service_locator.L9Bq50M" alias=".service_locator.2H0cqte"/>
-    <service id=".service_locator.eYgnRLh" alias=".service_locator.jk_jEuI"/>
+    <service id=".service_locator.h3FFcIu" alias=".service_locator.6hWhwyj"/>
     <service id=".service_locator.NK827YO" alias=".service_locator.W9y3dzm"/>
   </services>
 </container>

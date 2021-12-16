@@ -1,20 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ImportController!{% endblock %}
+{#{% block title %}Hello ImportController!{% endblock %}#}
+{% block stylesheets %}
+<style>
+    * {
+        flex: border-box;
+    }
+    text
+    {
+        text-align: center;
+    }
+    body
+    {
+        padding: 0 20px;
+        background-color: #FFFFFF;
+    }
+    .container1
+    {
+        display: flex;
+        width: 95%;
+        position: absolute;
+        padding-bottom: 25px;
+        color: wheat;
+        background-color: rgba(0, 0, 0, 0.77)
+    ;
+    }
+    a:link, a:visited {
+        text-decoration: none;
+        color: wheat;
+        display: inline-block;
+    }
+    img
+    {
+        border-radius: 20px;
+        display: block;
+        height: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{#    <style>#}
+{#        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
+{#        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
+{#    </style>#}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/casus/src/Controller/ImportController.php'|file_link(0) }}">src/Controller/ImportController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/casus/templates/import/index.html.twig'|file_link(0) }}">templates/import/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container1">
+        <h1>Hello</h1>
+        <div class="succes">
+            <p>
+                Your data is up to date!
+            </p>
+            <br>
+            <p>
+                Wil je je deals lijst bekijken? Klik <a href="{{ path('deal') }}"> hier </a> dan!
+            </p>
+            <img src="{{ asset('https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2020%2F07%2F02%2FGettyImages-138460237.jpg') }}" alt="I see you friend">
+        </div>
+    </div>
 {% endblock %}

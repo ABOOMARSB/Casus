@@ -30,12 +30,19 @@ class Category
     private $sort;
 
     /**
-     * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="category_id")
+     * @ORM\Column(type="string", length=255)
+     */
+    private $icon;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="category")
      */
     private $deals;
 
-    public function __construct()
+    public function __construct($category)
     {
+        $this->sort = $category['category'];
+
         $this->deals = new ArrayCollection();
     }
 
@@ -68,6 +75,26 @@ class Category
         return $this;
     }
 
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function activeCat(): bool
+    {
+        $catId = isset($_GET['category_id']) ? $_GET['category_id']: 0;
+        $activeCat = (int) htmlspecialchars($catId);
+
+        return $activeCat === $this->getId();
+    }
+
     /**
      * @return Collection|Deal[]
      */
@@ -80,7 +107,7 @@ class Category
     {
         if (!$this->deals->contains($deal)) {
             $this->deals[] = $deal;
-            $deal->setCategoryId($this);
+            $deal->setCategory($this);
         }
 
         return $this;
@@ -90,8 +117,8 @@ class Category
     {
         if ($this->deals->removeElement($deal)) {
             // set the owning side to null (unless already changed)
-            if ($deal->getCategoryId() === $this) {
-                $deal->setCategoryId(null);
+            if ($deal->getCategory() === $this) {
+                $deal->setCategory(null);
             }
         }
 

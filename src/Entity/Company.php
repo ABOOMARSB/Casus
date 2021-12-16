@@ -75,7 +75,6 @@ class Company
     {
         $this->name = $company['company_name'];
         $this->companySlug = $company['company_slug'];
-//        $this->checkCompanySlug = $company['_embedded']['company']['slug'];
         $this->latitude = $company['deal_map_pointer']['latitude'];
         $this->longitude = $company['deal_map_pointer']['longitude'];
         $this->website = $company['_embedded']['company']['website'];

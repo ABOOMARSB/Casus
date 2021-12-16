@@ -127,6 +127,7 @@ class ComposerStaticInitb593da97a489a137135124b9eeacabe9
         'M' => 
         array (
             'Monolog\\' => 8,
+            'MercurySeries\\FlashyBundle\\' => 27,
         ),
         'L' => 
         array (
@@ -512,6 +513,10 @@ class ComposerStaticInitb593da97a489a137135124b9eeacabe9
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'MercurySeries\\FlashyBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mercuryseries/flashy-bundle/src',
+        ),
         'Laminas\\Code\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-code/src',
@@ -619,6 +624,8 @@ class ComposerStaticInitb593da97a489a137135124b9eeacabe9
     public static $classMap = array (
         'App\\Controller\\DealController' => __DIR__ . '/../..' . '/src/Controller/DealController.php',
         'App\\Controller\\ImportController' => __DIR__ . '/../..' . '/src/Controller/ImportController.php',
+        'App\\DataFixtures\\AppFixtures' => __DIR__ . '/../..' . '/src/DataFixtures/AppFixtures.php',
+        'App\\DataFixtures\\DealFixture' => __DIR__ . '/../..' . '/src/DataFixtures/DealFixture.php',
         'App\\Entity\\Category' => __DIR__ . '/../..' . '/src/Entity/Category.php',
         'App\\Entity\\City' => __DIR__ . '/../..' . '/src/Entity/City.php',
         'App\\Entity\\Company' => __DIR__ . '/../..' . '/src/Entity/Company.php',
@@ -2418,6 +2425,12 @@ class ComposerStaticInitb593da97a489a137135124b9eeacabe9
         'Laminas\\Code\\Reflection\\ReflectionInterface' => __DIR__ . '/..' . '/laminas/laminas-code/src/Reflection/ReflectionInterface.php',
         'Laminas\\Code\\Scanner\\DocBlockScanner' => __DIR__ . '/..' . '/laminas/laminas-code/src/Scanner/DocBlockScanner.php',
         'Locale' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Locale.php',
+        'MercurySeries\\FlashyBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/mercuryseries/flashy-bundle/src/DependencyInjection/Configuration.php',
+        'MercurySeries\\FlashyBundle\\DependencyInjection\\MercurySeriesFlashyExtension' => __DIR__ . '/..' . '/mercuryseries/flashy-bundle/src/DependencyInjection/MercurySeriesFlashyExtension.php',
+        'MercurySeries\\FlashyBundle\\FlashyNotifier' => __DIR__ . '/..' . '/mercuryseries/flashy-bundle/src/FlashyNotifier.php',
+        'MercurySeries\\FlashyBundle\\MercurySeriesFlashyBundle' => __DIR__ . '/..' . '/mercuryseries/flashy-bundle/src/MercurySeriesFlashyBundle.php',
+        'MercurySeries\\FlashyBundle\\SessionStore' => __DIR__ . '/..' . '/mercuryseries/flashy-bundle/src/SessionStore.php',
+        'MercurySeries\\FlashyBundle\\SymfonySessionStore' => __DIR__ . '/..' . '/mercuryseries/flashy-bundle/src/SymfonySessionStore.php',
         'Monolog\\DateTimeImmutable' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/DateTimeImmutable.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
         'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',

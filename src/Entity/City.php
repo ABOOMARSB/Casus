@@ -25,31 +25,22 @@ class City
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="city_id")
+     * @ORM\Column(type="text")
      */
-    private $deal;
+    private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Deal::class, inversedBy="cityId")
+     * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="City")
      */
-    private $getDeal;
+    private $deals;
 
-    public function __construct($deal)
+    public function __construct($city)
     {
-        $this->name = $deal['city_name'];
-    }
+        $this->name = $city['city_name'];
+        $this->slug = $city['city_slug'];
 
-//    public function getDeal(): ?Deal
-//    {
-//        return $this->getDeal;
-//    }
-//
-//    public function setDeal(?Deal $getDeal): self
-//    {
-//        $this->getDeal = $getDeal;
-//
-//        return $this;
-//    }
+        $this->deals = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,5 +59,45 @@ class City
         return $this;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
 
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Deal[]
+     */
+    public function getDeals(): Collection
+    {
+        return $this->deals;
+    }
+
+    public function addDeal(Deal $deal): self
+    {
+        if (!$this->deals->contains($deal)) {
+            $this->deals[] = $deal;
+            $deal->setCity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDeal(Deal $deal): self
+    {
+        if ($this->deals->removeElement($deal)) {
+            // set the owning side to null (unless already changed)
+            if ($deal->getCity() === $this) {
+                $deal->setCity(null);
+            }
+        }
+
+        return $this;
+    }
 }

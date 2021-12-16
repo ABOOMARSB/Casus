@@ -84,6 +84,17 @@ class Deal
      */
     private $company;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="deals")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=City::class, inversedBy="deals")
+     */
+    private $City;
+
     public function __construct($deal)
     {
         $this->deal_unique = $deal['unique'];
@@ -95,7 +106,6 @@ class Deal
         $this->from_price = $deal['from'];
         $this->is_for_sale = $deal['is_for_sale'];
         $this->is_new_today = $deal['is_new_today'];
-//        $this->company = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -284,6 +294,30 @@ class Deal
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getCity(): ?City
+    {
+        return $this->City;
+    }
+
+    public function setCity(?City $City): self
+    {
+        $this->City = $City;
 
         return $this;
     }

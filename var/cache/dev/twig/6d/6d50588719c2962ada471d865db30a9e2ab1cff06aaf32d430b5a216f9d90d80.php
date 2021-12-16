@@ -25,7 +25,7 @@ class __TwigTemplate_88c38a79ec18d2cdf9d4d036166f91cee2599c21af2c36fac08bbd6a8b2
         $this->source = $this->getSourceContext();
 
         $this->blocks = [
-            'title' => [$this, 'block_title'],
+            'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -55,17 +55,55 @@ class __TwigTemplate_88c38a79ec18d2cdf9d4d036166f91cee2599c21af2c36fac08bbd6a8b2
 
     }
 
-    // line 3
-    public function block_title($context, array $blocks = [])
+    // line 4
+    public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        echo "Hello ImportController!";
+        // line 5
+        echo "<style>
+    * {
+        flex: border-box;
+    }
+    text
+    {
+        text-align: center;
+    }
+    body
+    {
+        padding: 0 20px;
+        background-color: #FFFFFF;
+    }
+    .container1
+    {
+        display: flex;
+        width: 95%;
+        position: absolute;
+        padding-bottom: 25px;
+        color: wheat;
+        background-color: rgba(0, 0, 0, 0.77)
+    ;
+    }
+    a:link, a:visited {
+        text-decoration: none;
+        color: wheat;
+        display: inline-block;
+    }
+    img
+    {
+        border-radius: 20px;
+        display: block;
+        height: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -74,7 +112,7 @@ class __TwigTemplate_88c38a79ec18d2cdf9d4d036166f91cee2599c21af2c36fac08bbd6a8b2
 
     }
 
-    // line 5
+    // line 44
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -84,30 +122,27 @@ class __TwigTemplate_88c38a79ec18d2cdf9d4d036166f91cee2599c21af2c36fac08bbd6a8b2
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 6
-        echo "<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class=\"example-wrapper\">
-    <h1>Hello ";
-        // line 12
-        echo twig_escape_filter($this->env, (isset($context["controller_name"]) || array_key_exists("controller_name", $context) ? $context["controller_name"] : (function () { throw new RuntimeError('Variable "controller_name" does not exist.', 12, $this->source); })()), "html", null, true);
-        echo "! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href=\"";
-        // line 16
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\CodeExtension']->getFileLink("/var/www/html/casus/src/Controller/ImportController.php", 0), "html", null, true);
-        echo "\">src/Controller/ImportController.php</a></code></li>
-        <li>Your template at <code><a href=\"";
-        // line 17
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\CodeExtension']->getFileLink("/var/www/html/casus/templates/import/index.html.twig", 0), "html", null, true);
-        echo "\">templates/import/index.html.twig</a></code></li>
-    </ul>
-</div>
+        // line 49
+        echo "
+    <div class=\"container1\">
+        <h1>Hello</h1>
+        <div class=\"succes\">
+            <p>
+                Your data is up to date!
+            </p>
+            <br>
+            <p>
+                Wil je je deals lijst bekijken? Klik <a href=\"";
+        // line 58
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("deal");
+        echo "\"> hier </a> dan!
+            </p>
+            <img src=\"";
+        // line 60
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2020%2F07%2F02%2FGettyImages-138460237.jpg"), "html", null, true);
+        echo "\" alt=\"I see you friend\">
+        </div>
+    </div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -129,30 +164,73 @@ class __TwigTemplate_88c38a79ec18d2cdf9d4d036166f91cee2599c21af2c36fac08bbd6a8b2
 
     public function getDebugInfo()
     {
-        return array (  107 => 17,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  142 => 60,  137 => 58,  126 => 49,  116 => 44,  69 => 5,  59 => 4,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}Hello ImportController!{% endblock %}
+{#{% block title %}Hello ImportController!{% endblock %}#}
+{% block stylesheets %}
+<style>
+    * {
+        flex: border-box;
+    }
+    text
+    {
+        text-align: center;
+    }
+    body
+    {
+        padding: 0 20px;
+        background-color: #FFFFFF;
+    }
+    .container1
+    {
+        display: flex;
+        width: 95%;
+        position: absolute;
+        padding-bottom: 25px;
+        color: wheat;
+        background-color: rgba(0, 0, 0, 0.77)
+    ;
+    }
+    a:link, a:visited {
+        text-decoration: none;
+        color: wheat;
+        display: inline-block;
+    }
+    img
+    {
+        border-radius: 20px;
+        display: block;
+        height: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{#    <style>#}
+{#        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
+{#        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
+{#    </style>#}
 
-<div class=\"example-wrapper\">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href=\"{{ '/var/www/html/casus/src/Controller/ImportController.php'|file_link(0) }}\">src/Controller/ImportController.php</a></code></li>
-        <li>Your template at <code><a href=\"{{ '/var/www/html/casus/templates/import/index.html.twig'|file_link(0) }}\">templates/import/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class=\"container1\">
+        <h1>Hello</h1>
+        <div class=\"succes\">
+            <p>
+                Your data is up to date!
+            </p>
+            <br>
+            <p>
+                Wil je je deals lijst bekijken? Klik <a href=\"{{ path('deal') }}\"> hier </a> dan!
+            </p>
+            <img src=\"{{ asset('https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2020%2F07%2F02%2FGettyImages-138460237.jpg') }}\" alt=\"I see you friend\">
+        </div>
+    </div>
 {% endblock %}
 ", "import/index.html.twig", "/var/www/html/casus/templates/import/index.html.twig");
     }
