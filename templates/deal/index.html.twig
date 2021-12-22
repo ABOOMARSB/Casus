@@ -1,35 +1,64 @@
 {% extends 'base.html.twig' %}
 
-    {% block title %}Hello DealsController!{% endblock %}
+{#    {% block title %}Hello DealsController!{% endblock %}#}
 
     {% block body %}
-        <div class="container">
+
+        <!-- Start Nav Section -->
+        <nav class="block float-left relative w-full mb-5 bg-white z-50">
+            <div class="hide-scrollbar relative block">
+                <div class="hide-scrollbar2 relative block">
+                    <ul class="list-none top-0 margin-auto h-32">
+                        {% for category in categories %}
+                            <li class="categorie{{ category.activeCat ? 'active' : '' }} m-auto float-left text-center border-0 outline-0 px-2.5 py-4 cursor-pointer list-none h-full w-100%">
+                                <a href="?catid={{ category.getSort }}">
+                                    <span class="material-icons block text-4xl">{{ category.getIcon }}</span>
+                                    <div class="nav-txt mt-4"> {{ category.getName }} </div>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Nav Section -->
+
+        <div class="container px-7">
+            <!-- Start Deals Section -->
             {% for deal in deals %}
-                {% if deal.getIsForSale == true %}
-                    <section>
-                        <div class="box">
-                            <div class="img">
-                                {% if deal.shouldShowDiscount %}
-                                    <div class="red-ribbon">
-                                        <span>
-                                            <div class="discount_amount">{{ deal.getPercentDiscount }}%</div>
-                                        </span>
-                                    </div>
-                                {% endif %}
-                                <img src="{{ deal.getFullImg }}" alt="Deal afbeelding"/>
-                                {{ deal.divIsNew|raw }}
-                            </div>
-                            <div class="title">{{ deal.getTitle }}</div>
-                            <div class="company">{{ deal.company.name }}</div>
-                            <div class="sold">Verkocht: {{ deal.getSold }}</div>
-                            <div class="from">{{ deal.getFromPrice|raw }}</div>
-                            <div class="price">{{ deal.getPriceAsHtml|raw }}</div>
-                        </div>
-                    </section>
+                {% set break = false %}
+                {% if not deal.visibleCategory %}
+                    {% set break = true %}
                 {% endif %}
-            {% endfor %}
+                    {% if deal.getIsForSale == true %}
+                        <section>
+                            <div class="box w-2/6 rounded-lg float-left p-5">
+                                <div class="img relative truncate">
+                                    {% if deal.shouldShowDiscount %}
+                                        <div class="red-ribbon w-36 h-7 text-center top-5 left-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">
+                                            <span>
+                                                <div class="discount_amount">{{ deal.getPercentDiscount }}%</div>
+                                            </span>
+                                        </div>
+                                    {% endif %}
+                                    <img src="{{ deal.getFullImg }}" alt="Deal afbeelding"/>
+                                    {{ deal.divIsNew|raw }}
+                                </div>
+                                <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl float-left clear-both">{{ deal.getTitle }}</div>
+                                <div class="company mt-2 clear-both float-left">{{ deal.company.name }}</div>
+                                <div class="city float-left clear-both">{{ deal.city.name }}</div>
+                                <div class="sold float-left clear-left mt-4">Verkocht: {{ deal.getSold }}</div>
+                                <div class="from nu-underline leading-6">{{ deal.getFromPrice|raw }}</div>
+                                <div class="price text-2xl leading-6">{{ deal.getPriceAsHtml|raw }}</div>
+                            </div>
+                        </section>
+                    {% endif %}
+                {% endfor %}
         </div>
-        <div class="navigation">
+        <!-- End Deals Section -->
+
+        <!-- Paginator -->
+        <div class="navigation flex mt-1.5 clear-both">
             {{ knp_pagination_render(deals) }}
         </div>
     {% endblock %}

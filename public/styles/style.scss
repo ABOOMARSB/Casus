@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.categorie {
+    width: calc(100% /8);
+
+}
+
+html {
+    @apply m-0 p-0 flex;
+}
+
+nav {
+    a {
+        &:link, &:visited {
+            @apply block m-auto no-underline h-full;
+            color: #9F9F9F;
+        }
+    }
+}
+
+.hide-scrollbar {
+    @apply relative block;
+}
+
+section {
+    .box {
+        &:after {
+            @apply clear-right content-none block w-full h-px
+        }
+    }
+
+    &:nth-child(1), &:nth-child(2) {
+        .box{
+            @apply w-1/2;
+            .red-ribbon {
+                @apply w-48 h-1 text-center top-6 left-12 text-2xl;
+                .discount_amount {
+                    @apply mt-1.5;
+                }
+            }
+        }
+    }
+
+    &:nth-child(3n+0) {
+        .box {
+            @apply clear-left;
+        }
+    }
+
+}
+
+.img {
+    &:nth-child(1), &:nth-child(2) {
+        @apply w-full;
+    }
+}
+
+img {
+    @apply relative w-full rounded-lg;
+}
+
+.newToday {
+    @apply absolute h-16 w-16 text-white top-4 left-4 rounded-3xl pt-3 text-center font-normal font-roboto;
+    background-color: #0081E9;
+}
+
+.red-ribbon {
+    background-color: #c42324;
+    transform: translateZ(0);
+    text-shadow: 1px 1px 0 rgba(0,0, 0, 0.4);
+}
+
+.txt, .company, .city, .sold, .from, .price {
+    @apply  text-lg;
+}
+
+.company, .city {
+    color: #7C7C7C;
+}
+
+.sold {
+    color: #00AEEA;
+}
+
+.from, .price {
+    @apply float-left mt-3.5 mr-2.5;
+}
+
+.form {
+    color: #7C7C7C;
+}
+
+.price {
+    color: #40BF4B;
+}
+
+.pagination {
+    @apply flex mt-1.5 clear-both hidden;
+}

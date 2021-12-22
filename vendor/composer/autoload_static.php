@@ -4,25 +4,25 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb593da97a489a137135124b9eeacabe9
+class ComposerStaticInite84f3f4a8d8b37de4103baac6316779c
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '53c7be3308b5aa229d03a4dfcf6ca18d' => __DIR__ . '/..' . '/symfony/intl/Resources/functions.php',
-        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
+        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
         '92c8763cd6170fce6fcfe7e26b4e8c10' => __DIR__ . '/..' . '/symfony/phpunit-bridge/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '53c7be3308b5aa229d03a4dfcf6ca18d' => __DIR__ . '/..' . '/symfony/intl/Resources/functions.php',
+        '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
+        'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
+        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
-        'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -178,8 +178,8 @@ class ComposerStaticInitb593da97a489a137135124b9eeacabe9
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -591,9 +591,9 @@ class ComposerStaticInitb593da97a489a137135124b9eeacabe9
         ),
         'Doctrine\\Common\\' => 
         array (
-            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
-            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
-            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            0 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            2 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
         ),
         'Doctrine\\Bundle\\MigrationsBundle\\' => 
         array (
@@ -6814,9 +6814,9 @@ class ComposerStaticInitb593da97a489a137135124b9eeacabe9
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb593da97a489a137135124b9eeacabe9::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb593da97a489a137135124b9eeacabe9::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb593da97a489a137135124b9eeacabe9::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite84f3f4a8d8b37de4103baac6316779c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite84f3f4a8d8b37de4103baac6316779c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite84f3f4a8d8b37de4103baac6316779c::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\DealRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -79,14 +77,14 @@ class Deal
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="deals")
+     * @ORM\ManyToOne(targetEntity=Company::class, inversedBy="deals", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $company;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="deals")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $category;
 
@@ -308,6 +306,18 @@ class Deal
         $this->category = $category;
 
         return $this;
+    }
+
+    public function visibleCategory(): bool
+    {
+        $catid = isset( $_GET['sort'] ) ? $_GET['sort'] : 0;
+        $activeCategory = (int) htmlspecialchars($catid);
+        if( $activeCategory === 0 )
+        {
+            return true;dd("hi");
+        }
+
+        return $this->category === $activeCategory;
     }
 
     public function getCity(): ?City

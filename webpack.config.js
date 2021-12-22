@@ -1,25 +1,23 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV === "production";
+
+const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public", "styles", "scss"),
   },
   devServer: {
     open: true,
     host: "localhost",
   },
+  mode: "development",
   plugins: [
-    new HtmlWebpackPlugin({
-      template: "index.html",
-    }),
-
     new MiniCssExtractPlugin(),
 
     // Add your plugins here
@@ -28,8 +26,13 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.s[ac]ss$/i,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        test: /\.(s[ac]|c)ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -40,17 +43,7 @@ const config = {
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
-};
-
-module.exports = {
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-    ]
-  }
+  devtool: "source-map",
 };
 
 module.exports = () => {
@@ -61,5 +54,3 @@ module.exports = () => {
   }
   return config;
 };
-
-

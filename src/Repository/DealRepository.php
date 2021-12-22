@@ -2,15 +2,14 @@
 
 namespace App\Repository;
 
+use App\DealCollection;
 use App\Entity\Deal;
-use App\Entity\Company;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Deal|null find($id, $lockMode = null, $lockVersion = null)
  * @method Deal|null findOneBy(array $criteria, array $orderBy = null)
- * @method Deal[]    findAll()
  * @method Deal[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class DealRepository extends ServiceEntityRepository
@@ -18,6 +17,11 @@ class DealRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Deal::class);
+    }
+
+    public function findAll(): DealCollection
+    {
+        return new DealCollection($this->findBy([]));
     }
 
     // /**

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\CompanyRepository;
+use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\DealRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,27 +12,31 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DealController extends AbstractController
 {
-    private const DEALS_PER_PAGE = 20;
+    private const DEALS_PER_PAGE = 25;
 
     /**
      * @Route("/", name="deal")
      */
-    public function index(DealRepository $dealRepository, CompanyRepository $companyRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(DealRepository $dealRepository, CategoryRepository $categoryRepository, PaginatorInterface $paginator, Request $request): Response
     {
+
         $deals = $paginator->paginate(
-            $dealRepository->findAll(),
+            $dealRepository->findAll()->getDealsSortedByCity(),
             $request->query->getInt(
                 'page', 1
             ),
             self::DEALS_PER_PAGE
             );
-        $company = $companyRepository ->findAll();
+
+        $categories = $categoryRepository->findAll();
 
         return $this->render
         (
-            'deal/index.html.twig', ['deals' => $deals]
+            'deal/index.html.twig', [
+                'deals' => $deals,
+                'categories' => $categories,
+            ],
         );
 
     }
 }
-/*Control if exist do nothing if not insert*/

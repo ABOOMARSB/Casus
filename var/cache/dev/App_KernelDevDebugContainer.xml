@@ -371,6 +371,7 @@
     <service id="App\DataFixtures\DealFixture" class="App\DataFixtures\DealFixture" autowire="true" autoconfigure="true">
       <tag name="doctrine.fixture.orm"/>
     </service>
+    <service id="App\DealCollection" class="App\DealCollection" autowire="true" autoconfigure="true"/>
     <service id="App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -6073,10 +6074,10 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.KfbR3DY.Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.2H0cqte" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.hcVbeot" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="companyRepository" type="service_closure" id="App\Repository\CompanyRepository"/>
+        <argument key="categoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
         <argument key="dealRepository" type="service_closure" id="App\Repository\DealRepository"/>
         <argument key="paginator" type="service_closure" id="knp_paginator"/>
       </argument>
@@ -6087,10 +6088,10 @@
         <argument key="flashy" type="service_closure" id="mercuryseries_flashy.flashy_notifier"/>
       </argument>
     </service>
-    <service id=".service_locator.icGLanl" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.AZ2Zovl" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
-        <argument key="App\Controller\DealController::index" type="service_closure" id=".service_locator.2H0cqte"/>
+        <argument key="App\Controller\DealController::index" type="service_closure" id=".service_locator.hcVbeot"/>
         <argument key="App\Controller\ImportController::index" type="service_closure" id=".service_locator.6hWhwyj"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
@@ -6098,7 +6099,7 @@
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::terminate" type="service_closure" id=".service_locator.KfwZsne"/>
-        <argument key="App\Controller\DealController:index" type="service_closure" id=".service_locator.2H0cqte"/>
+        <argument key="App\Controller\DealController:index" type="service_closure" id=".service_locator.hcVbeot"/>
         <argument key="App\Controller\ImportController:index" type="service_closure" id=".service_locator.6hWhwyj"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
@@ -6613,12 +6614,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.icGLanl"/>
+      <argument type="service" id=".service_locator.AZ2Zovl"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.icGLanl"/>
+      <argument type="service" id=".service_locator.AZ2Zovl"/>
     </service>
     <service id=".debug.http_client.inner" class="Symfony\Contracts\HttpClient\HttpClientInterface">
       <argument type="collection"/>
@@ -7476,7 +7477,7 @@
     <service id="MercurySeries\FlashyBundle\FlashyNotifier" alias="mercuryseries_flashy.flashy_notifier"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.0GV1BZZ" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.icGLanl"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.AZ2Zovl"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -7517,7 +7518,7 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator._5g_Wvc" alias=".service_locator.KfwZsne"/>
     <service id=".service_locator.JBAFp66" alias=".service_locator.KfbR3DY"/>
-    <service id=".service_locator.L9Bq50M" alias=".service_locator.2H0cqte"/>
+    <service id=".service_locator.yx3QB95" alias=".service_locator.hcVbeot"/>
     <service id=".service_locator.h3FFcIu" alias=".service_locator.6hWhwyj"/>
     <service id=".service_locator.NK827YO" alias=".service_locator.W9y3dzm"/>
   </services>

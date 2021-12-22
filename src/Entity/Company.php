@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
+use App\DealCollection;
 use App\Repository\CompanyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass=CompanyRepository::class)
@@ -182,11 +182,11 @@ class Company
     }
 
     /**
-     * @return Collection|Deal[]
+     * @return DealCollection|Deal[]
      */
-    public function getDeals(): Collection
+    public function getDeals(): DealCollection
     {
-        return $this->deals;
+        return DealCollection::fromArrayCollection($this->deals);
     }
 
     public function addDeal(Deal $deal): self

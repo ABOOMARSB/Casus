@@ -39,9 +39,15 @@ class Category
      */
     private $deals;
 
-    public function __construct($category)
+    public function __construct(string $name, int $sort, string $icon)
     {
-        $this->sort = $category['category'];
+////        $this->sort = $category['category'];
+
+        $this->name = $name;
+        $this->sort = $sort;
+        $this->icon = $icon;
+
+
 
         $this->deals = new ArrayCollection();
     }
@@ -87,12 +93,17 @@ class Category
         return $this;
     }
 
+    public function getCategories(): array
+    {
+        return $this->categories;
+    }
+
     public function activeCat(): bool
     {
-        $catId = isset($_GET['category_id']) ? $_GET['category_id']: 0;
-        $activeCat = (int) htmlspecialchars($catId);
+        $catSort = isset($_GET['sort']) ? $_GET['sort']: 0;
+        $activeCat = (int) htmlspecialchars($catSort);
 
-        return $activeCat === $this->getId();
+        return $activeCat === $this->getSort();
     }
 
     /**
