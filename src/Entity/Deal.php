@@ -186,7 +186,7 @@ class Deal
         }
         else
         {
-            return '<div class="before"> &euro;' . $seperate[0] . '</div><div class="after"' . $seperate[1] . '</div>';
+            return '<div class="before">&euro;' . $seperate[0] . ',</div><div class="after">' . $seperate[1] . '</div>';
         }
     }
 
@@ -310,11 +310,11 @@ class Deal
 
     public function visibleCategory(): bool
     {
-        $catid = isset( $_GET['sort'] ) ? $_GET['sort'] : 0;
-        $activeCategory = (int) htmlspecialchars($catid);
+        $catsort = isset( $_GET['catSort'] ) ? $_GET['catSort'] : 0;
+        $activeCategory = (int) htmlspecialchars($catsort);
         if( $activeCategory === 0 )
         {
-            return true;dd("hi");
+            return true;
         }
 
         return $this->category === $activeCategory;

@@ -100,10 +100,10 @@ class Category
 
     public function activeCat(): bool
     {
-        $catSort = isset($_GET['sort']) ? $_GET['sort']: 0;
+        $catSort = isset( $_GET['catSort'] ) ? $_GET['catSort'] : 0;
         $activeCat = (int) htmlspecialchars($catSort);
 
-        return $activeCat === $this->getSort();
+        return $activeCat === $this->sort;
     }
 
     /**

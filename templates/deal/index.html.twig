@@ -5,15 +5,15 @@
     {% block body %}
 
         <!-- Start Nav Section -->
-        <nav class="block float-left relative w-full mb-5 bg-white z-50">
+        <nav class="block float-left relative w-full mb-5 bg-white z-50 px-7">
             <div class="hide-scrollbar relative block">
                 <div class="hide-scrollbar2 relative block">
-                    <ul class="list-none top-0 margin-auto h-32">
+                    <ul class="list-none top-0 margin-auto h-32 flex">
                         {% for category in categories %}
-                            <li class="categorie{{ category.activeCat ? 'active' : '' }} m-auto float-left text-center border-0 outline-0 px-2.5 py-4 cursor-pointer list-none h-full w-100%">
-                                <a href="?catid={{ category.getSort }}">
-                                    <span class="material-icons block text-4xl">{{ category.getIcon }}</span>
-                                    <div class="nav-txt mt-4"> {{ category.getName }} </div>
+                            <li class="categorie {{ category.activeCat ? 'active' : '' }} w-28 m-auto float-left text-center px-2.5 py-4 cursor-pointer h-full">
+                                <a href="?catSort={{ category.getSort }}">
+                                    <span class="material-icons block text-4xl m-auto">{{ category.getIcon }}</span>
+                                    <div class="nav-txt mt-4 m-auto text-sm"> {{ category.getName }} </div>
                                 </a>
                             </li>
                         {% endfor %}
@@ -26,40 +26,45 @@
         <div class="container px-7">
             <!-- Start Deals Section -->
             {% for deal in deals %}
-                {% set break = false %}
+
+                {% set continue = false %}
                 {% if not deal.visibleCategory %}
-                    {% set break = true %}
+                    {% set continue = true %}
+{#                    {{ dump(deal.visibleCategory) }}#}
                 {% endif %}
-                    {% if deal.getIsForSale == true %}
-                        <section>
-                            <div class="box w-2/6 rounded-lg float-left p-5">
-                                <div class="img relative truncate">
-                                    {% if deal.shouldShowDiscount %}
-                                        <div class="red-ribbon w-36 h-7 text-center top-5 left-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">
-                                            <span>
-                                                <div class="discount_amount">{{ deal.getPercentDiscount }}%</div>
-                                            </span>
-                                        </div>
-                                    {% endif %}
-                                    <img src="{{ deal.getFullImg }}" alt="Deal afbeelding"/>
-                                    {{ deal.divIsNew|raw }}
+
+                    {% if deal.getIsForSale == true and not continue %}
+                        <a class="btn" href="{{ path('deal_detail', {'id' : deal.id}) }}">
+                            <section>
+                                <div class="box w-2/6 rounded-lg float-left p-5">
+                                    <div class="img relative truncate">
+                                        {% if deal.shouldShowDiscount %}
+                                            <div class="red-ribbon w-36 h-7 text-center top-5 -right-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">
+                                                <span>
+                                                    <div class="discount_amount mt-0.5">{{ deal.getPercentDiscount }}%</div>
+                                                </span>
+                                            </div>
+                                        {% endif %}
+                                        <img src="{{ deal.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>
+                                        {{ deal.divIsNew|raw }}
+                                    </div>
+                                    <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl float-left clear-both">{{ deal.getTitle }}</div>
+                                    <div class="company mt-2 float-left clear-both text-base">{{ deal.company.name }}</div>
+                                    <div class="city float-left clear-both text-base">{{ deal.city.name }}</div>
+                                    <div class="sold float-left clear-left mt-4 text-base">Verkocht: {{ deal.getSold }}</div>
+                                    <div class="price text-2xl leading-6 float-right mt-3.5 mr-2.5 flex">{{ deal.getPriceAsHtml|raw }}</div>
+                                    <div class="from line-through text-gray-700	leading-6 text-base float-right mt-3.5 mr-2.5">{{ deal.getFromPrice|raw }}</div>
                                 </div>
-                                <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl float-left clear-both">{{ deal.getTitle }}</div>
-                                <div class="company mt-2 clear-both float-left">{{ deal.company.name }}</div>
-                                <div class="city float-left clear-both">{{ deal.city.name }}</div>
-                                <div class="sold float-left clear-left mt-4">Verkocht: {{ deal.getSold }}</div>
-                                <div class="from nu-underline leading-6">{{ deal.getFromPrice|raw }}</div>
-                                <div class="price text-2xl leading-6">{{ deal.getPriceAsHtml|raw }}</div>
-                            </div>
-                        </section>
+                            </section>
+                        </a>
                     {% endif %}
                 {% endfor %}
         </div>
         <!-- End Deals Section -->
 
         <!-- Paginator -->
-        <div class="navigation flex mt-1.5 clear-both">
-            {{ knp_pagination_render(deals) }}
-        </div>
+{#        <div class="navigation flex mt-1.5 clear-both">#}
+{#            {{ knp_pagination_render(deals) }}#}
+{#        </div>#}
     {% endblock %}
 

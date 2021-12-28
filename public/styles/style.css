@@ -1,60 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.categorie {
-  width: 12.5%;
-}
-
 html {
   @apply m-0 p-0 flex;
 }
 
-nav a:link, nav a:visited {
+nav .hide-scrollbar {
+  @apply relative block;
+}
+nav .hide-scrollbar .active .categorie:hover, nav .hide-scrollbar .active .material-icons, nav .hide-scrollbar .active .nav-txt {
+  color: #0081E9;
+}
+nav .hide-scrollbar .active:after {
+  @apply text-inherit text-current w-full h-1 rounded-2xl relative inline-block;
+  content: var(--tw-content);
+  background-color: #0081E9;
+}
+nav .hide-scrollbar a:link, nav .hide-scrollbar a:visited {
   @apply block m-auto no-underline h-full;
   color: #9F9F9F;
-}
-
-.hide-scrollbar {
-  @apply relative block;
 }
 
 section .box:after {
   @apply clear-right content-none block w-full h-px;
 }
-section:nth-child(1) .box, section:nth-child(2) .box {
+
+a:nth-child(1) .box, a:nth-child(2) .box {
   @apply w-1/2;
 }
-section:nth-child(1) .box .red-ribbon, section:nth-child(2) .box .red-ribbon {
-  @apply w-48 h-1 text-center top-6 left-12 text-2xl;
+a:nth-child(1) .box .img, a:nth-child(2) .box .img {
+  @apply w-full;
 }
-section:nth-child(1) .box .red-ribbon .discount_amount, section:nth-child(2) .box .red-ribbon .discount_amount {
-  @apply mt-1.5;
+a:nth-child(1) .box .img img, a:nth-child(2) .box .img img {
+  @apply relative w-full rounded-lg;
 }
-section:nth-child(3n+0) .box {
+a:nth-child(1) .box .img .red-ribbon, a:nth-child(2) .box .img .red-ribbon {
+  @apply w-64 h-9 text-center top-6 -right-16 text-2xl;
+}
+a:nth-child(1) .box .img .red-ribbon .discount_amount, a:nth-child(2) .box .img .red-ribbon .discount_amount {
+  @apply ml-8 mt-0;
+}
+a:nth-child(3n+0) .box {
   @apply clear-left;
 }
 
-.img:nth-child(1), .img:nth-child(2) {
-  @apply w-full;
-}
-
-img {
-  @apply relative w-full rounded-lg;
-}
-
 .newToday {
-  @apply absolute h-16 w-16 text-white top-4 left-4 rounded-3xl pt-3 text-center font-normal font-roboto;
+  @apply absolute h-16 w-16 text-white top-4 left-4 rounded-full pt-3 text-center font-normal font-roboto whitespace-normal text-xs;
   background-color: #0081E9;
 }
 
 .red-ribbon {
   background-color: #c42324;
-  transform: translateZ(0);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
-}
-
-.txt, .company, .city, .sold, .from, .price {
-  @apply text-lg;
 }
 
 .company, .city {
@@ -65,16 +62,20 @@ img {
   color: #00AEEA;
 }
 
-.from, .price {
-  @apply float-left mt-3.5 mr-2.5;
-}
-
 .form {
   color: #7C7C7C;
 }
 
 .price {
   color: #40BF4B;
+}
+
+.before {
+  @apply text-2xl leading-6;
+}
+
+.after {
+  @apply text-base relative;
 }
 
 .pagination {

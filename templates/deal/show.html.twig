@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}Hello ImportController!{% endblock %}#}
+
+{% block body %}
+    {#    <style>#}
+    {#        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
+    {#        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
+    {#    </style>#}
+
+    <section>
+        <div class="box w-2/6 rounded-lg float-left p-5">
+            <div class="img relative truncate">
+                {% if deals.shouldShowDiscount %}
+                    <div class="red-ribbon w-36 h-7 text-center top-5 -right-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">
+                        <span>
+                            <div class="discount_amount mt-0.5">{{ deals.getPercentDiscount }}%</div>
+                        </span>
+                    </div>
+                {% endif %}
+                <img src="{{ deals.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>
+                {{ deals.divIsNew|raw }}
+            </div>
+            <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl float-left clear-both">{{ deals.getTitle }}</div>
+            <div class="company mt-2 float-left clear-both text-base">{{ deals.company.name }}</div>
+            <div class="city float-left clear-both text-base">{{ deals.city.name }}</div>
+            <div class="sold float-left clear-left mt-4 text-base">Verkocht: {{ deals.getSold }}</div>
+            <div class="price text-2xl leading-6 float-right mt-3.5 mr-2.5 flex">{{ deals.getPriceAsHtml|raw }}</div>
+            <div class="from line-through text-gray-700	leading-6 text-base float-right mt-3.5 mr-2.5">{{ deals.getFromPrice|raw }}</div>
+        </div>
+    </section>
+{% endblock %}
