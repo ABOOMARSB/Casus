@@ -36,6 +36,7 @@
     "cssnano": "^5.0.12",
     "debug": "^4.3.3",
     "headroom.js": "^0.12.0",
+    "jquey": "^0.0.1-security",
     "npm": "^8.2.0",
     "owl.carousel": "^2.3.4",
     "postcss-cli": "^9.1.0",

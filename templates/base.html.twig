@@ -7,12 +7,21 @@
                and uncomment the following Encore helpers to start using Symfony UX #}
 
         {% block stylesheets %}
+            <!-- Stylesheets -->
+            <script src="https://kit.fontawesome.com/afce667978.js" crossorigin="anonymous"></script>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+            <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.carousel.min.css">
+            <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.theme.default.min.css">
+
             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
             <link href="https://fonts.googleapis.com">
             <link href="https://fonts.gstatic.com" crossorigin>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
             <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
             <link href="{{ asset('styles/scss/main.css') }}" rel="stylesheet">
+
+
         {% endblock %}
 
     </head>
@@ -21,10 +30,18 @@
         {% block body %}
 
         {% endblock %}
-        </div>
+
         {% block javascript %}
+
             <script src="//code.jquery.com/jquery.js"></script>
             <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{#            <script src="/dist/js/jquery-3.3.1.min.js"></script>#}
+            <script src="./OwlCarousel/dist/owl.carousel.min.js"></script>
+{#            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>#}
+            <script src="./dist/js/main.js"></script>
+
         {% endblock %}
 
         {{ include('@MercurySeriesFlashy/flashy.html.twig') }}

@@ -465,6 +465,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0px;
   margin-right: 0px;
 }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -507,6 +511,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mt-1 {
   margin-top: 0.25rem;
 }
+.mt-6 {
+  margin-top: 1.5rem;
+}
 .block {
   display: block;
 }
@@ -537,6 +544,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-36 {
   width: 9rem;
 }
+.max-w-4xl {
+  max-width: 56rem;
+}
 .rotate-45 {
   --tw-rotate: 45deg;
   transform: var(--tw-transform);
@@ -546,6 +556,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .list-none {
   list-style-type: none;
+}
+.flex-row {
+  flex-direction: row;
 }
 .truncate {
   overflow: hidden;
@@ -588,6 +601,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
+.pb-16 {
+  padding-bottom: 4rem;
+}
 .text-center {
   text-align: center;
 }
@@ -618,8 +634,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 1.5rem;
   line-height: 2rem;
 }
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
 .font-medium {
   font-weight: 500;
+}
+.font-black {
+  font-weight: 900;
 }
 .not-italic {
   font-style: normal;
@@ -647,15 +670,14 @@ html {
   display: flex;
   padding: 0px;
 }
-
-nav .hide-scrollbar {
+html nav .hide-scrollbar {
   position: relative;
   display: block;
 }
-nav .hide-scrollbar .active .categorie:hover, nav .hide-scrollbar .active .material-icons, nav .hide-scrollbar .active .nav-txt {
+html nav .hide-scrollbar .active .categorie:hover, html nav .hide-scrollbar .active .material-icons, html nav .hide-scrollbar .active .nav-txt {
   color: #0081E9;
 }
-nav .hide-scrollbar .active:after {
+html nav .hide-scrollbar .active:after {
   position: relative;
   display: inline-block;
   height: 0.25rem;
@@ -665,7 +687,7 @@ nav .hide-scrollbar .active:after {
   content: var(--tw-content);
   background-color: #0081E9;
 }
-nav .hide-scrollbar a:link, nav .hide-scrollbar a:visited {
+html nav .hide-scrollbar a:link, html nav .hide-scrollbar a:visited {
   margin: auto;
   display: block;
   height: 100%;
@@ -673,8 +695,7 @@ nav .hide-scrollbar a:link, nav .hide-scrollbar a:visited {
           text-decoration-line: none;
   color: #9F9F9F;
 }
-
-section .box:after {
+html section .box:after {
   clear: right;
   display: block;
   height: 1px;
@@ -682,19 +703,18 @@ section .box:after {
   --tw-content: none;
   content: var(--tw-content);
 }
-
-a:nth-child(1) .box, a:nth-child(2) .box {
+html a:nth-child(1) .box, html a:nth-child(2) .box {
   width: 50%;
 }
-a:nth-child(1) .box .img, a:nth-child(2) .box .img {
+html a:nth-child(1) .box .img, html a:nth-child(2) .box .img {
   width: 100%;
 }
-a:nth-child(1) .box .img img, a:nth-child(2) .box .img img {
+html a:nth-child(1) .box .img img, html a:nth-child(2) .box .img img {
   position: relative;
   width: 100%;
   border-radius: 0.5rem;
 }
-a:nth-child(1) .box .img .red-ribbon, a:nth-child(2) .box .img .red-ribbon {
+html a:nth-child(1) .box .img .red-ribbon, html a:nth-child(2) .box .img .red-ribbon {
   top: 1.5rem;
   right: -4rem;
   height: 2.25rem;
@@ -703,15 +723,14 @@ a:nth-child(1) .box .img .red-ribbon, a:nth-child(2) .box .img .red-ribbon {
   font-size: 1.5rem;
   line-height: 2rem;
 }
-a:nth-child(1) .box .img .red-ribbon .discount_amount, a:nth-child(2) .box .img .red-ribbon .discount_amount {
+html a:nth-child(1) .box .img .red-ribbon .discount_amount, html a:nth-child(2) .box .img .red-ribbon .discount_amount {
   margin-left: 2rem;
   margin-top: 0px;
 }
-a:nth-child(3n+0) .box {
+html a:nth-child(3n+0) .box {
   clear: left;
 }
-
-.newToday {
+html .newToday {
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -729,43 +748,90 @@ a:nth-child(3n+0) .box {
   color: rgb(255 255 255 / var(--tw-text-opacity));
   background-color: #0081E9;
 }
-
-.red-ribbon {
+html .red-ribbon {
   background-color: #c42324;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
 }
-
-.company, .city {
+html .company, html .city {
   color: #7C7C7C;
 }
-
-.sold {
+html .sold {
   color: #00AEEA;
 }
-
-.form {
+html .form {
   color: #7C7C7C;
 }
-
-.price {
+html .price {
   color: #40BF4B;
 }
-
-.before {
+html .before {
   font-size: 1.5rem;
   line-height: 1.5rem;
 }
-
-.after {
+html .after {
   position: relative;
   font-size: 1rem;
   line-height: 1.5rem;
 }
-
-.pagination {
+html .pagination {
   clear: both;
   margin-top: 0.375rem;
   display: none;
+}
+html .owl-item img {
+  display: inline-block !important;
+  max-width: 64rem !important;
+  width: 80%;
+}
+html .owl-prev span, html .owl-next span {
+  display: none;
+}
+html .owl-prev:before {
+  content: "\f060";
+  background: none;
+  padding: 0;
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 75px;
+  transform: translate(0, -50%);
+  font-family: FontAwesome;
+  color: #47465A;
+  font-size: 75px;
+  -webkit-text-stroke: 3px white;
+}
+@media (min-width: 768px) {
+  html .owl-prev:before {
+    left: 20px;
+    font-size: 60px;
+  }
+}
+html .owl-next:before {
+  content: "\f061";
+  background: none;
+  padding: 0;
+  position: absolute;
+  display: block;
+  top: 50%;
+  right: 75px;
+  transform: translate(0, -50%);
+  font-family: FontAwesome;
+  color: #47465A;
+  font-size: 75px;
+  -webkit-text-stroke: 3px white;
+}
+@media (min-width: 768px) {
+  html .owl-next:before {
+    right: 20px;
+    font-size: 60px;
+  }
+  .md\:max-w-2xl {
+    max-width: 42rem;
+  }
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map*/

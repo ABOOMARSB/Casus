@@ -145,5 +145,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="afce667978" level="application" />
+    <orderEntry type="library" name="typed.js" level="application" />
+    <orderEntry type="library" name="headroom" level="application" />
   </component>
 </module>

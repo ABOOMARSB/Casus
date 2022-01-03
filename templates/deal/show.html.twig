@@ -1,24 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{#{% block title %}Hello ImportController!{% endblock %}#}
-
 {% block body %}
-    {#    <style>#}
-    {#        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
-    {#        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
-    {#    </style>#}
 
-    <section>
+    <!-- Start Nav Section -->
+    <nav class="block float-left relative w-full mb-5 bg-white z-50 px-7">
+        <div class="hide-scrollbar relative block">
+            <div class="hide-scrollbar2 relative block">
+                <ul class="list-none top-0 margin-auto h-32 flex">
+                    {% for categories in category %}
+                        <li class="categorie {{ categories.activeCat ? 'active' : '' }} w-28 m-auto float-left text-center px-2.5 py-4 cursor-pointer h-full">
+                            <a href="/?catSort={{ categories.getSort }}">
+                                <span class="material-icons block text-4xl m-auto">{{ categories.getIcon }}</span>
+                                <div class="nav-txt mt-4 m-auto text-sm"> {{ categories.getName }} </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Nav Section -->
+
+    <!-- Start Description Section -->
+    <div>
         <div class="box w-2/6 rounded-lg float-left p-5">
-            <div class="img relative truncate">
-                {% if deals.shouldShowDiscount %}
-                    <div class="red-ribbon w-36 h-7 text-center top-5 -right-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">
-                        <span>
-                            <div class="discount_amount mt-0.5">{{ deals.getPercentDiscount }}%</div>
-                        </span>
+            <div class="img relative flex flex-row w-full">
+{#                {% if deals.shouldShowDiscount %}#}
+{#                    <div class="red-ribbon w-36 h-7 text-center top-5 -right-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">#}
+{#                        <span>#}
+{#                            <div class="discount_amount mt-0.5">{{ deals.getPercentDiscount }}%</div>#}
+{#                        </span>#}
+{#                    </div>#}
+{#                {% endif %}#}
+
+                <div class="container mx-auto text-center pb-16">
+{#                    <div class="max-w-4xl md:max-w-2xl mt-6 mx-auto px-2">#}
+{#                        <h2 class="h text-3xl md:text-4xl font-black ps-heading">#}
+{#                            Things I will fire#}
+{#                        </h2>#}
+{#                    </div>#}
+                    <div class="owl-carousel owl-theme owl-loaded owl-drag">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                <div class="owl-item">
+                                    <img src="https://images.newrepublic.com/f414eea56706eb2ea86645d0202e482a198b9d84.jpeg" alt="Obama laugh" class="rounded-xl">
+                                </div>
+                                <div class="owl-item">
+                                    <img src="{{ deals.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>
+                                </div>
+                                <div class="owl-item">
+                                    <img src="https://i.ytimg.com/vi/mvoDD_Zr1kQ/hqdefault.jpg" alt="me falling in thoughts" class="rounded-xl">
+                                </div>
+                                <div class="owl-item">
+                                    <img src="https://i.pinimg.com/originals/5a/b0/3f/5ab03feb20b6bc38e7c8811e11241d37.jpg" alt="Me during the project" class="rounded-xl">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                {% endif %}
-                <img src="{{ deals.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>
+                </div>
+{#                <img src="https://images.newrepublic.com/f414eea56706eb2ea86645d0202e482a198b9d84.jpeg" alt="Obama laugh" class="rounded-xl">#}
+{#                <img src="{{ deals.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>#}
+{#                <img src="https://i.ytimg.com/vi/mvoDD_Zr1kQ/hqdefault.jpg" alt="me falling in thoughts" class="rounded-xl">#}
+{#                <img src="https://i.pinimg.com/originals/5a/b0/3f/5ab03feb20b6bc38e7c8811e11241d37.jpg" alt="Me during the project" class="rounded-xl">#}
                 {{ deals.divIsNew|raw }}
             </div>
             <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl float-left clear-both">{{ deals.getTitle }}</div>
@@ -28,5 +71,6 @@
             <div class="price text-2xl leading-6 float-right mt-3.5 mr-2.5 flex">{{ deals.getPriceAsHtml|raw }}</div>
             <div class="from line-through text-gray-700	leading-6 text-base float-right mt-3.5 mr-2.5">{{ deals.getFromPrice|raw }}</div>
         </div>
-    </section>
+    </div>
+    <!-- End Description Section -->
 {% endblock %}

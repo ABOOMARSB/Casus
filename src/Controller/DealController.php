@@ -44,13 +44,16 @@ class DealController extends AbstractController
      * @Route("deal/{id}", name="deal_detail", methods={"GET", "POST"})
      */
 
-    public function show(Deal $deal): Response
+    public function show(Deal $deal, CategoryRepository $categoryRepository): Response
     {
+        $category = $categoryRepository->findAll();
+
         return $this->render
         (
             'deal/show.html.twig', [
             'deals' => $deal,
             'categories' => $deal->getCategory(),
+            'category' => $category,
             ],
         );
     }
