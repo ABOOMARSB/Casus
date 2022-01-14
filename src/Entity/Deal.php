@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\DealRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -273,12 +274,12 @@ class Deal
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTime $createdAt): self
+    public function setCreatedAt(DateTime $createdAt): self
     {
         $this->createdAt = $createdAt;
         return $this;
@@ -317,7 +318,7 @@ class Deal
             return true;
         }
 
-        return $this->category === $activeCategory;
+        return $this->category->getSort() === $activeCategory;
     }
 
     public function getCity(): ?City

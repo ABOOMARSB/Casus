@@ -1,46 +1,51 @@
 <!DOCTYPE html>
-<html lang="nl" xmlns="http://www.w3.org/1999/xhtml" class="m-0 p-0 flex">
+<html lang="nl" xmlns="http://www.w3.org/1999/xhtml" class="flex m-0 p-0 h-full">
     <head>
         <meta charset="UTF-8">
-{#        <title>{% block title %}Mijn stage opdracht{% endblock %}</title>#}
-        {# Run `composer require symfony/webpack-encore-bundle`
-               and uncomment the following Encore helpers to start using Symfony UX #}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         {% block stylesheets %}
-            <!-- Stylesheets -->
-            <script src="https://kit.fontawesome.com/afce667978.js" crossorigin="anonymous"></script>
+            <!-- Link Swiper's CSS -->
+            <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css"/>
+            <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+            <!-- Fonts -->
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-            <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.carousel.min.css">
-            <link rel="stylesheet" href="OwlCarousel/dist/assets/owl.theme.default.min.css">
-
-            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
             <link href="https://fonts.googleapis.com">
             <link href="https://fonts.gstatic.com" crossorigin>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+
+            <!-- Flashy notifier -->
             <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+            <!-- Stylesheet -->
             <link href="{{ asset('styles/scss/main.css') }}" rel="stylesheet">
-
-
         {% endblock %}
 
     </head>
 
-    <body class="w-10/12 m-auto p-0 font-roboto">
+    <body class="h-full w-full">
         {% block body %}
 
         {% endblock %}
-
         {% block javascript %}
 
             <script src="//code.jquery.com/jquery.js"></script>
             <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-{#            <script src="/dist/js/jquery-3.3.1.min.js"></script>#}
-            <script src="./OwlCarousel/dist/owl.carousel.min.js"></script>
-{#            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>#}
-            <script src="./dist/js/main.js"></script>
+            <!-- Swiper -->
+            <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtp1e-knepStUI5o_won1e-y4Sewu8Q84&callback=initMap"></script>
+
+            <!-- Typed.JS -->
+            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
+            <!-- Main JS -->
+            <script src="{{ asset('scripts/main.js') }}"></script>
 
         {% endblock %}
 

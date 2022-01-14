@@ -1,64 +1,46 @@
+@import "../../node_modules/swiper/swiper-bundle.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html {
-  @apply m-0 p-0 flex;
-}
-html nav .hide-scrollbar {
-  @apply relative block;
-}
 html nav .hide-scrollbar .active .categorie:hover, html nav .hide-scrollbar .active .material-icons, html nav .hide-scrollbar .active .nav-txt {
-  color: #0081E9;
+  @apply text-white lg:text-primary;
 }
 html nav .hide-scrollbar .active:after {
-  @apply text-inherit text-current w-full h-1 rounded-2xl relative inline-block;
+  @apply w-full 2xl:w-10/12 h-1 lg:rounded-2xl relative inline-block bg-white lg:bg-primary -top-4 lg:top-auto;
   content: var(--tw-content);
-  background-color: #0081E9;
 }
 html nav .hide-scrollbar a:link, html nav .hide-scrollbar a:visited {
-  @apply block m-auto no-underline h-full;
-  color: #9F9F9F;
+  @apply flex flex-col m-auto no-underline h-full lg:text-lightGrey;
 }
-html section .box:after {
+html section:after {
   @apply clear-right content-none block w-full h-px;
 }
-html a:nth-child(1) .box, html a:nth-child(2) .box {
-  @apply w-1/2;
+html .boxLink:nth-child(1), html .boxLink:nth-child(2) {
+  @apply md:w-1/2 mt-11 lg:mt-0;
 }
-html a:nth-child(1) .box .img, html a:nth-child(2) .box .img {
+html .boxLink:nth-child(1) .box, html .boxLink:nth-child(2) .box {
   @apply w-full;
 }
-html a:nth-child(1) .box .img img, html a:nth-child(2) .box .img img {
-  @apply relative w-full rounded-lg;
+html .boxLink:nth-child(1) .img, html .boxLink:nth-child(2) .img {
+  @apply md:w-full;
 }
-html a:nth-child(1) .box .img .red-ribbon, html a:nth-child(2) .box .img .red-ribbon {
-  @apply w-64 h-9 text-center top-6 -right-16 text-2xl;
+html .boxLink:nth-child(1) .img .red-ribbon, html .boxLink:nth-child(2) .img .red-ribbon {
+  @apply md:w-40 md:h-8 md:leading-6 md:top-6 md:text-2xl;
 }
-html a:nth-child(1) .box .img .red-ribbon .discount_amount, html a:nth-child(2) .box .img .red-ribbon .discount_amount {
-  @apply ml-8 mt-0;
+html .boxLink:nth-child(1) .img .red-ribbon .discount_amount, html .boxLink:nth-child(2) .img .red-ribbon .discount_amount {
+  @apply md:mt-0;
 }
-html a:nth-child(3n+0) .box {
-  @apply clear-left;
+html .boxLink:nth-child(1) .box {
+  @apply lg:mt-0;
+}
+html .boxLink:nth-child(3n) .box {
+  @apply md:clear-left;
 }
 html .newToday {
-  @apply absolute h-16 w-16 text-white top-4 left-4 rounded-full pt-3 text-center font-normal font-roboto whitespace-normal text-xs;
-  background-color: #0081E9;
+  @apply absolute h-16 w-16 text-white top-4 left-4 rounded-full pt-3 text-center font-normal font-roboto whitespace-normal text-xs bg-newToday;
 }
-html .red-ribbon {
-  background-color: #c42324;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
-}
-html .company, html .city {
-  color: #7C7C7C;
-}
-html .sold {
-  color: #00AEEA;
-}
-html .form {
-  color: #7C7C7C;
-}
-html .price {
-  color: #40BF4B;
+html .sold-before, html .sold-after {
+  @apply text-darkBlue;
 }
 html .before {
   @apply text-2xl leading-6;
@@ -69,50 +51,43 @@ html .after {
 html .pagination {
   @apply flex mt-1.5 clear-both hidden;
 }
-html .owl-item img {
-  @apply max-w-5xl inline-block !important;
-  width: 80%;
+html .swiper {
+  @apply w-full h-full;
 }
-html .owl-prev span, html .owl-next span {
-  @apply hidden;
+html .swiper-slide {
+  @apply flex text-center text-lg bg-white justify-center items-center;
 }
-html .owl-prev:before {
-  content: "\f060";
-  background: none;
-  padding: 0;
-  @apply block absolute;
-  top: 50%;
-  left: 75px;
-  transform: translate(0, -50%);
-  font-family: FontAwesome;
-  color: #47465A;
-  font-size: 75px;
-  -webkit-text-stroke: 3px white;
+html .swiper-slide img {
+  @apply block w-full h-96 object-cover;
 }
-@screen md {
-  html .owl-prev:before {
-    left: 20px;
-    font-size: 60px;
+html .swiper-horizontal > .swiper-pagination-bullets, html .swiper-pagination-bullets.swiper-pagination-horizontal, html .swiper-pagination-custom, html .swiper-pagination-fraction {
+  position: initial;
+}
+html p {
+  @apply text-grey;
+}
+html ul {
+  @apply list-disc pl-7 lg:pl-0 lg:mt-2 lg:mb-1.5;
+}
+html ul li {
+  @apply mb-4;
+}
+html ul li strong {
+  @apply text-black mt-5 font-normal;
+}
+html strong {
+  @apply text-black font-bold mb-5;
+}
+html em {
+  @apply text-grey not-italic;
+}
+@media only screen and (max-width: 1024px) {
+  html nav {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.239);
   }
 }
-html .owl-next:before {
-  content: "\f061";
-  background: none;
-  padding: 0;
-  @apply block absolute;
-  top: 50%;
-  right: 75px;
-  transform: translate(0, -50%);
-  font-family: FontAwesome;
-  color: #47465A;
-  font-size: 75px;
-  -webkit-text-stroke: 3px white;
-}
-@screen md {
-  html .owl-next:before {
-    right: 20px;
-    font-size: 60px;
-  }
+html .description ul {
+  @apply pl-7;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="containerImport flex flex-col bg-lightBlack text-wheat w-full h-full p-5">
-        <p class="w-fit h-fit text-wheat">
-            (☞ﾟヮﾟ)☞ You have been TrOlEd ☜(ﾟヮﾟ☜)
+    <div class="containerImport flex flex-col bg-lightBlack text-wheat w-full h-max min-h-full p-5">
+        <p class="w-fit h-fit text-wheat self-center text-3xl font-semibold">
+            (☞ﾟヮﾟ)☞ You have been TrOlLeD ☜(ﾟヮﾟ☜)
 
         </p>
 
-        <div class="succes flex flex-col text-wheat">
+        <div class="succes flex flex-col text-wheat h-full">
             <p class="text-wheat self-center mt-6">
-                Goede nieuws! Jouw data is up to date!
+                Goede nieuws! Je bent getrolled!
             </p>
             <br>
             <!-- <video controls autoplay> -->
-            <iframe width="560" height="315" src="{{ asset('https://www.youtube.com/embed/PXqcHi2fkXI?autoplay=1') }}" allow="autoplay"></iframe>
+            <iframe src="{{ asset('https://www.youtube.com/embed/PXqcHi2fkXI?autoplay=1') }}" allow="autoplay" class="w-2/4 h-full self-center"></iframe>
             <!-- </video> -->
             <p class="text-wheat self-center my-4">
-                Wil je je deals lijst bekijken? Klik op de knop dan om naar de Home pagina te gaan!
+                Wil je de deals echt bekijken? Klik op de knop dan om naar de Home pagina van Social Deal te gaan!
             </p>
-            <a href="{{ path('deal') }}" class="flex self-center w-1/4 m-6">
-                <div class="flex items-center items-center bg-darkGreen m-auto h-24 rounded-2xl text-2xl hover:underline">
+            <a href="{{ asset('https://www.socialdeal.nl/') }}" class="flex self-center w-1/4 m-6 h-auto">
+                <div class="flex items-center items-center bg-darkGreen m-auto rounded-2xl text-2xl hover:underline">
                     <span class="text-wheat font-importBtn p-2.5 text-center hover:text-lightWheat">
-                        Druk nu! (Wie weet, misschien kun je nog iets winnen!)
+                        Druk hier, dan word je verwijst naar Social Deal website, daar kun je dingen echt kopen!
                     </span>
                 </div>
             </a>

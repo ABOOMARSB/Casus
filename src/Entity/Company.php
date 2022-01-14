@@ -35,6 +35,11 @@ class Company
     private $checkCompanySlug;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $number;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $street;
@@ -63,6 +68,7 @@ class Company
      * @ORM\OneToMany(targetEntity=Deal::class, mappedBy="company")
      */
     private $deals;
+
 
 
     static function fromJsonToDB($dealJson, $dealDetail)
@@ -121,6 +127,18 @@ class Company
         return $this;
     }
 
+    public function getNumber(): ?string
+    {
+        return $this->number;
+    }
+
+    public function setNumber(string $number): self
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
     public function getStreet(): ?string
     {
         return $this->street;
@@ -172,6 +190,11 @@ class Company
         $this->longitude = $longitude;
 
         return $this;
+    }
+
+    public function getLatLng(){
+        $latLng = [ 'lat' => $this->latitude, 'lng' => $this->longitude ];
+        return json_encode($latLng);
     }
 
     public function setWebsite(string $website): self

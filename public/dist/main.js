@@ -106,3 +106,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _pub
 /******/ 	
 /******/ })()
 ;
+
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    freeMode: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+});

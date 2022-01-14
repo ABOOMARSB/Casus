@@ -19,6 +19,12 @@ class CompanyRepository extends ServiceEntityRepository
         parent::__construct($registry, Company::class);
     }
 
+    public function add(Company $company)
+    {
+        $this->_em->persist($company);
+        $this->_em->flush();
+    }
+
     // /**
     //  * @return Company[] Returns an array of Company objects
     //  */

@@ -19,6 +19,12 @@ class CityRepository extends ServiceEntityRepository
         parent::__construct($registry, City::class);
     }
 
+    public function add(City $city)
+    {
+        $this->_em->persist($city);
+        $this->_em->flush();
+    }
+
     // /**
     //  * @return City[] Returns an array of City objects
     //  */

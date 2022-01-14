@@ -1,64 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{#{% block title %}Hello ImportController!{% endblock %}#}
-{% block stylesheets %}
-<style>
-    * {
-        flex: border-box;
-    }
-    text
-    {
-        text-align: center;
-    }
-    body
-    {
-        padding: 0 20px;
-        background-color: #FFFFFF;
-    }
-    .container1
-    {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        padding-bottom: 25px;
-        color: wheat;
-        background-color: rgba(0, 0, 0, 0.77)
-    ;
-    }
-    a:link, a:visited {
-        text-decoration: none;
-        color: wheat;
-        display: inline-block;
-    }
-    img
-    {
-        border-radius: 20px;
-        display: block;
-        height: 500px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
-{% endblock %}
+{% block title %}Welkom op de Import pagina!{% endblock %}
 
 {% block body %}
-{#    <style>#}
-{#        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
-{#        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
-{#    </style>#}
+    <div class="containerImport flex flex-col bg-lightBlack text-wheat w-full h-full p-5 min-h-full h-max">
+        <p class="w-fit h-fit text-wheat">
+            D.M.V. deze import functie, kun je, je data in de database oplsaan!
+        </p>
 
-    <div class="container1">
-        <h1>Hello</h1>
-        <div class="succes">
-            <p>
-                Your data is up to date!
+        <div class="succes flex flex-col text-wheat">
+            <p class="text-wheat self-center mt-6">
+                Goede nieuws! Jouw data is up to date!
             </p>
             <br>
-            <p>
-                Wil je je deals lijst bekijken? Klik <a href="{{ path('deal') }}"> hier </a> dan!
+            <img src="{{ asset('https://storage.googleapis.com/nrpassets/uploads/articles/1573377810-Michael-grimace.png') }}" alt="I feel you friend" class="self-center w-2/4 h-3/4 rounded-tl-5xxl rounded-br-5xxl m-4">
+            <p class="text-wheat self-center my-4">
+                Wil je de deals lijst bekijken? Klik op de knop dan om naar de Home pagina te gaan!
             </p>
-            <img src="{{ asset('https://storage.googleapis.com/nrpassets/uploads/articles/1573377810-Michael-grimace.png') }}" alt="I see you friend">
+            <a href="{{ path('deal') }}" class="flex self-center w-1/4 m-6">
+                <div class="flex items-center items-center bg-darkGreen m-auto h-24 rounded-2xl text-2xl hover:underline">
+                    <span class="text-wheat font-importBtn p-2.5 text-center hover:text-lightWheat">
+                        Druk nu! (Wie weet, misschien kun je nog iets winnen!)
+                    </span>
+                </div>
+            </a>
         </div>
     </div>
 {% endblock %}

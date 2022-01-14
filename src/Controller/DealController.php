@@ -46,14 +46,14 @@ class DealController extends AbstractController
 
     public function show(Deal $deal, CategoryRepository $categoryRepository): Response
     {
-        $category = $categoryRepository->findAll();
+        $categories = $categoryRepository->findAll();
 
         return $this->render
         (
             'deal/show.html.twig', [
             'deals' => $deal,
-            'categories' => $deal->getCategory(),
-            'category' => $category,
+            'category' => $deal->getCategory(),
+            'categories' => $categories,
             ],
         );
     }

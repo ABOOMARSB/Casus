@@ -3,12 +3,12 @@
 {% block body %}
 
         <!-- Start Nav Section -->
-        <nav class="block h-12 lg:h-auto fixed lg:relative overflow-hidden w-full mb-5 bg-white z-50 lg:px-7">
+        <nav class="flex flex-col h-12 lg:h-auto fixed lg:relative overflow-hidden w-full bg-white z-50 lg:px-7">
             <div class="hide-scrollbar relative block">
                 <div class="hide-scrollbar2 relative block pb-5 lg:p-0 overflow-x-scroll overflow-y-hidden lg:overflow-hidden bg-primary lg:bg-white">
-                    <ul class="list-none top-0 margin-auto h-12 lg:h-32 flex whitespace-nowrap lg:whitespace-normal">
+                    <ul class="list-none margin-auto h-12 lg:h-32 flex whitespace-nowrap lg:whitespace-normal">
                         {% for category in categories  %}
-                            <li class="categorie {{ category.activeCat ? 'active' : '' }} m-auto text-center lg:py-4 cursor-pointer h-full">
+                            <li class="categorie {{ category.activeCat ? 'active' : '' }} w-full text-center lg:py-4 cursor-pointer h-full">
                                 <a href="/?catSort={{ category.getSort }}" class="text-smallNav lg:text-white px-5 md:p-auto">
                                     <span class="material-icons hidden lg:block text-4xl m-auto">{{ category.getIcon }}</span>
                                     <div class="nav-txt mt-4 m-auto text-base lg:text-sm"> {{ category.getName }} </div>

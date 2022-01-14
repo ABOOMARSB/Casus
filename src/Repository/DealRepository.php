@@ -19,6 +19,12 @@ class DealRepository extends ServiceEntityRepository
         parent::__construct($registry, Deal::class);
     }
 
+    public function add(Deal $deal)
+    {
+        $this->_em->persist($deal);
+        $this->_em->flush();
+    }
+
     public function findAll(): DealCollection
     {
         return new DealCollection($this->findBy([]));

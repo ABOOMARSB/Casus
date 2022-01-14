@@ -1,70 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{#    {% block title %}Hello DealsController!{% endblock %}#}
-
     {% block body %}
+        <img src="https://media.socialdeal.nl/backgrounds/snowflake_s-hertogenbosch.jpg" class="fixed w-full h-full object-cover -z-10 hidden lg:block">
+        <div class="flex flex-col w-full lg:w-10/12 min-h-full m-auto font-roboto bg-white">
 
-        <!-- Start Nav Section -->
-        <nav class="block float-left relative w-full mb-5 bg-white z-50 px-7">
-            <div class="hide-scrollbar relative block">
-                <div class="hide-scrollbar2 relative block">
-                    <ul class="list-none top-0 margin-auto h-32 flex">
-                        {% for category in categories %}
-                            <li class="categorie {{ category.activeCat ? 'active' : '' }} w-28 m-auto float-left text-center px-2.5 py-4 cursor-pointer h-full">
-                                <a href="?catSort={{ category.getSort }}">
-                                    <span class="material-icons block text-4xl m-auto">{{ category.getIcon }}</span>
-                                    <div class="nav-txt mt-4 m-auto text-sm"> {{ category.getName }} </div>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- End Nav Section -->
+            <!-- Start Nav Section -->
+            {% include('nav/nav.html.twig') %}
+            <!-- End Nav Section -->
 
-        <div class="container px-7">
-            <!-- Start Deals Section -->
-            {% for deal in deals %}
-
-                {% set continue = false %}
-                {% if not deal.visibleCategory %}
-                    {% set continue = true %}
-{#                    {{ dump(deal.visibleCategory) }}#}
-                {% endif %}
-
-                    {% if deal.getIsForSale == true and not continue %}
-                        <a class="btn" href="{{ path('deal_detail', {'id' : deal.id}) }}">
-                            <section>
-                                <div class="box w-2/6 rounded-lg float-left p-5">
+            <div class="flex flex-wrap lg:px-7">
+                <!-- Start Deals Section -->
+                {% for deal in deals %}
+                    {% set continue = false %}
+                    {% if not deal.visibleCategory %}
+                        {% set continue = true %}
+    {#                    {{ dump(deal.visibleCategory) }}#}
+                    {% endif %}
+                        {% if deal.getIsForSale == true and not continue %}
+                            <a href="{{ path('deal_detail', {'id' : deal.id}) }}" class="boxLink w-full md:w-2/6">
+                                <section class="box rounded-lg p-5">
                                     <div class="img relative truncate">
                                         {% if deal.shouldShowDiscount %}
-                                            <div class="red-ribbon w-36 h-7 text-center top-5 -right-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">
-                                                <span>
-                                                    <div class="discount_amount mt-0.5">{{ deal.getPercentDiscount }}%</div>
-                                                </span>
+                                            <div class="red-ribbon w-36 h-7 text-center top-5 -right-10 leading-4 absolute py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white bg-red">
+                                                <div class="discount_amount mt-0.5">{{ deal.getPercentDiscount }}%</div>
                                             </div>
                                         {% endif %}
-                                        <img src="{{ deal.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>
+                                        <img src="{{ deal.getFullImg }}" alt="Deal afbeelding" class="rounded-xl w-full"/>
                                         {{ deal.divIsNew|raw }}
                                     </div>
-                                    <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl float-left clear-both">{{ deal.getTitle }}</div>
-                                    <div class="company mt-2 float-left clear-both text-base">{{ deal.company.name }}</div>
-                                    <div class="city float-left clear-both text-base">{{ deal.city.name }}</div>
-                                    <div class="sold float-left clear-left mt-4 text-base">Verkocht: {{ deal.getSold }}</div>
-                                    <div class="price text-2xl leading-6 float-right mt-3.5 mr-2.5 flex">{{ deal.getPriceAsHtml|raw }}</div>
-                                    <div class="from line-through text-gray-700	leading-6 text-base float-right mt-3.5 mr-2.5">{{ deal.getFromPrice|raw }}</div>
-                                </div>
-                            </section>
-                        </a>
-                    {% endif %}
-                {% endfor %}
+                                    <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl">{{ deal.getTitle }}</div>
+                                    <div class="text-grey mt-2 text-base">{{ deal.company.name }}</div>
+                                    <div class="text-grey text-base">{{ deal.city.name }}</div>
+                                    <div class="flex justify-between">
+                                        <div class="text-darkBlue mt-4 text-base">Verkocht: {{ deal.getSold }}</div>
+                                        <div class="flex flex-row-reverse">
+                                            <div class="text-green text-2xl leading-6 mt-3.5 mr-2.5 flex">{{ deal.getPriceAsHtml|raw }}</div>
+                                            <div class="text-grey line-through text-gray-700 leading-6 text-base mt-3.5 mr-2.5">{{ deal.getFromPrice|raw }}</div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+            <!-- End Deals Section -->
+
+{#            {% include('footer/footer.html.twig') %}#}
         </div>
-        <!-- End Deals Section -->
-
-        <!-- Paginator -->
-{#        <div class="navigation flex mt-1.5 clear-both">#}
-{#            {{ knp_pagination_render(deals) }}#}
-{#        </div>#}
     {% endblock %}
-

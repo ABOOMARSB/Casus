@@ -58,6 +58,7 @@ class ImportController extends AbstractController
                     ->setZip(Address::postcode())
                     ->setWebsite($faker->url);
             }
+            $companyObject->setNumber($faker->phoneNumber);
 
             $entityManager->persist($companyObject);
             $entityManager->flush();
@@ -66,7 +67,7 @@ class ImportController extends AbstractController
         }
 
         foreach ($dealJson['deals'] as $index => $data) {
-            $description = new Deal($data);
+            $deal = new Deal($data);
             $cityObject = new City($data);
 
             $detailCompanySlug = $dealdetail['_embedded']['company']['slug'];
@@ -95,8 +96,6 @@ class ImportController extends AbstractController
                 $entityManager->persist($cityObject);
 
                 $entityManager->flush();
-                var_dump($cityObject->getName());
-                echo "<br/>\n";
 
                 $resultCity = $cityObject;
             }
@@ -112,7 +111,7 @@ class ImportController extends AbstractController
 
             if($resultCategory === NULL) {
 
-            $categories = [];
+                $categories = [];
                 $categories[] = new Category('Populair',  0, 'grade');
                 $categories[] = new Category('Eten & Drinken',  7, 'restaurant');
                 $categories[] = new Category('Uitjes',  9, 'confirmation_number');
@@ -129,25 +128,25 @@ class ImportController extends AbstractController
             }
 
             if ($resultDeal === null) {
-                $description->setCity($resultCity);
-                $description->setCategory($resultCategory);
+                $deal->setCity($resultCity);
+                $deal->setCategory($resultCategory);
 
-                $description->setCreatedAt($faker->dateTimeBetween('- 5months'));
-                $description->setCompany($companyObject);
+                $deal->setCreatedAt($faker->dateTimeBetween('- 5months'));
+                $deal->setCompany($companyObject);
 
                 if ($dealCompanySlug == $detailCompanySlug) {
-                    $description->setCompany($companyObject);
+                    $deal->setCompany($companyObject);
                 }
 
                 if ($dealdetail['list_unique'] == $data['unique']) {
-                    $description->setDescription($dealdetail['description']);
+                    $deal->setDescription($dealdetail['description']);
                 } else {
-                    $description->setDescription($faker->realText(300));
+                    $deal->setDescription($faker->realText(300));
                 }
 
                 $flashy->success("Jouw data is toegevoegd!");
 
-                $entityManager->persist($description);
+                $entityManager->persist($deal);
                 $entityManager->flush();
             }
             else {

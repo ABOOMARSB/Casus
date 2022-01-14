@@ -9,11 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class TrollBuyController extends AbstractController
 {
     /**
-     * @Route("/troll/buy", name="troll_buy")
+     * @Route("/buy", name="buy")
      */
     public function index(): Response
     {
-        return $this->render('troll_buy/index.html.twig', [
+        return $this->render('buy/index.html.twig', [
             'controller_name' => 'TrollBuyController',
         ]);
     }

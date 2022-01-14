@@ -1,97 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "../../node_modules/swiper/swiper-bundle.min.css";
 
 html {
-    @apply m-0 p-0 flex;
-
     nav {
         .hide-scrollbar {
-            @apply relative block;
             .active .categorie:hover, .active .material-icons, .active .nav-txt {
-                color: #0081E9;
+                @apply text-white lg:text-primary
             }
 
             .active {
                 &:after {
-                    @apply text-inherit text-current w-full h-1 rounded-2xl relative inline-block;
+                    @apply w-full 2xl:w-10/12 h-1 lg:rounded-2xl relative inline-block bg-white lg:bg-primary -top-4 lg:top-auto;
                     content: var(--tw-content);
-                    background-color: #0081E9;
-
                 }
             }
 
             a {
                 &:link, &:visited {
-                    @apply block m-auto no-underline h-full;
-                    color: #9F9F9F;
+                    @apply flex flex-col m-auto no-underline h-full lg:text-lightGrey;
                 }
             }
         }
     }
 
     section {
-        .box {
-            &:after {
-                @apply clear-right content-none block w-full h-px
-            }
+        &:after {
+            @apply clear-right content-none block w-full h-px
         }
     }
 
-    a {
+    .boxLink {
         &:nth-child(1), &:nth-child(2) {
+                @apply md:w-1/2 mt-11 lg:mt-0;
             .box {
-                @apply w-1/2;
-                .img {
-                    @apply w-full;
+                @apply w-full;
+            }
+            .img {
+                @apply md:w-full;
 
-                    img {
-                        @apply relative w-full rounded-lg;
-                    }
+                .red-ribbon {
+                    @apply md:w-40 md:h-8 md:leading-6 md:top-6 md:text-2xl;
 
-                    .red-ribbon {
-                        @apply w-64 h-9 text-center top-6 -right-16 text-2xl;
-
-                        .discount_amount {
-                            @apply ml-8 mt-0;
-                        }
+                    .discount_amount {
+                        @apply md:mt-0;
                     }
                 }
             }
         }
 
-        &:nth-child(3n+0) {
+        &:nth-child(1) {
             .box {
-                @apply clear-left;
+                @apply lg:mt-0;
             }
         }
 
+        &:nth-child(3n) {
+            .box {
+                @apply md:clear-left;
+            }
+        }
     }
 
     .newToday {
-        @apply absolute h-16 w-16 text-white top-4 left-4 rounded-full pt-3 text-center font-normal font-roboto whitespace-normal text-xs;
-        background-color: #0081E9;
+        @apply absolute h-16 w-16 text-white top-4 left-4 rounded-full pt-3 text-center font-normal font-roboto whitespace-normal text-xs bg-newToday;
     }
 
-    .red-ribbon {
-        background-color: #c42324;
-        text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
-    }
-
-    .company, .city {
-        color: #7C7C7C;
-    }
-
-    .sold {
-        color: #00AEEA;
-    }
-
-    .form {
-        color: #7C7C7C;
-    }
-
-    .price {
-        color: #40BF4B;
+    .sold-before, .sold-after {
+        @apply text-darkBlue;
     }
 
     .before {
@@ -106,61 +83,54 @@ html {
         @apply flex mt-1.5 clear-both hidden;
     }
 
-    .owl-item {
-        img {
-            @apply max-w-5xl inline-block #{!important};
-            width: 80%;
-        }
+    .swiper {
+        @apply w-full h-full
     }
 
-    .owl-prev, .owl-next{
-        span {
-            @apply hidden ;
-        }
+    .swiper-slide {
+        @apply flex text-center text-lg bg-white justify-center items-center;
     }
 
-    .owl-prev {
-        &:before {
-            content: "\f060";
-            background: none;
-            padding: 0;
-            @apply block absolute;
-            top: 50%;
-            left: 75px;
-            transform: translate(0, -50%);
-            font-family: FontAwesome;
-            color: #47465A;
-            font-size: 75px;
-            -webkit-text-stroke: 3px white;
-        }
-        @screen md {
-            &:before {
-                left: 20px;
-                font-size: 60px;
+    .swiper-slide img {
+        @apply block w-full h-96 object-cover;
+    }
+
+    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+        position: initial;
+    }
+
+    p {
+        @apply text-grey;
+    }
+
+    ul {
+        @apply list-disc pl-7 lg:pl-0 lg:mt-2 lg:mb-1.5;
+
+        li {
+            @apply mb-4;
+
+            strong {
+                @apply text-black mt-5 font-normal;
             }
         }
     }
 
-    .owl-next {
-        &:before {
-            content: "\f061";
-            background: none;
-            padding: 0;
-            @apply block absolute;
-            top: 50%;
-            right: 75px;
-            transform: translate(0, -50%);
-            font-family: FontAwesome;
-            color: #47465A;
-            font-size: 75px;
-            -webkit-text-stroke: 3px white;
-        }
+    strong {
+        @apply text-black font-bold mb-5;
+    }
 
-        @screen md {
-            &:before{
-                right: 20px;
-                font-size: 60px;
-            }
+    em {
+        @apply text-grey not-italic
+    }
+
+
+    @media only screen and (max-width: 1024px) {
+        nav {
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.239);
         }
+    }
+
+    .description ul {
+            @apply pl-7;
     }
 }

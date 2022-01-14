@@ -2,75 +2,114 @@
 
 {% block body %}
 
-    <!-- Start Nav Section -->
-    <nav class="block float-left relative w-full mb-5 bg-white z-50 px-7">
-        <div class="hide-scrollbar relative block">
-            <div class="hide-scrollbar2 relative block">
-                <ul class="list-none top-0 margin-auto h-32 flex">
-                    {% for categories in category %}
-                        <li class="categorie {{ categories.activeCat ? 'active' : '' }} w-28 m-auto float-left text-center px-2.5 py-4 cursor-pointer h-full">
-                            <a href="/?catSort={{ categories.getSort }}">
-                                <span class="material-icons block text-4xl m-auto">{{ categories.getIcon }}</span>
-                                <div class="nav-txt mt-4 m-auto text-sm"> {{ categories.getName }} </div>
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+    <img src="https://media.socialdeal.nl/backgrounds/snowflake_s-hertogenbosch.jpg" class="fixed w-full h-full object-cover -z-10 hidden lg:block">
+    <div class="w-full lg:w-10/12 m-auto p-0 font-roboto bg-white flow-root overflow-hidden">
+    {% include('nav/nav.html.twig') %}
+
+    <!-- Start Description Page -->
+        <div class="box w-full rounded-lg mt-6 lg:m-0 pt-5 lg:p-5">
+            <div class="img relative flex flex-row w-full m-auto">
+                <div class="swiper mySwiper w-11/12">
+                    {% if deals.shouldShowDiscount %}
+                        <div class="red-ribbon w-52 h-8 text-center top-5 -right-10 leading-5 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-semibold text-white bg-red">
+                            <span>
+                                <div class="discount_amount mt-0.5 ml-9">{{ deals.getPercentDiscount }}%</div>
+                            </span>
+                        </div>
+                    {% endif %}
+
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="{{ deals.getFullImg }}" alt="Deal afbeelding" class="rounded-b-xl lg:rounded-xl object-cover block  pt-1 lg:p-px w-full h-80"/>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://images.newrepublic.com/f414eea56706eb2ea86645d0202e482a198b9d84.jpeg" alt="Obama laugh" class="rounded-b-xl lg:rounded-xl object-cover block  pt-1 lg:p-px w-full h-80">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://i.ytimg.com/vi/mvoDD_Zr1kQ/hqdefault.jpg" alt="me falling in thoughts" class="rounded-b-xl lg:rounded-xl object-cover block  pt-1 lg:p-px w-full h-80">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://wallpaperaccess.com/full/1512187.jpg" alt="Me during the project" class="rounded-b-xl lg:rounded-xl object-cover block  pt-1 lg:p-px w-full h-80">
+                        </div>
+                        {{ deals.divIsNew|raw }}
+                    </div>
+
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+
+                </div>
             </div>
-        </div>
-    </nav>
-    <!-- End Nav Section -->
 
-    <!-- Start Description Section -->
-    <div>
-        <div class="box w-2/6 rounded-lg float-left p-5">
-            <div class="img relative flex flex-row w-full">
-{#                {% if deals.shouldShowDiscount %}#}
-{#                    <div class="red-ribbon w-36 h-7 text-center top-5 -right-10 leading-4 absolute z-50 py-1 rotate-45 text-lg font-roboto not-italic font-medium text-white">#}
-{#                        <span>#}
-{#                            <div class="discount_amount mt-0.5">{{ deals.getPercentDiscount }}%</div>#}
-{#                        </span>#}
-{#                    </div>#}
-{#                {% endif %}#}
+            <div class="p-5 lg:p-0">
+                <div class="title font-medium lg:mt-2 mb-2.5 mx-0 text-xl w-full">{{ deals.getTitle }}</div>
 
-                <div class="container mx-auto text-center pb-16">
-{#                    <div class="max-w-4xl md:max-w-2xl mt-6 mx-auto px-2">#}
-{#                        <h2 class="h text-3xl md:text-4xl font-black ps-heading">#}
-{#                            Things I will fire#}
-{#                        </h2>#}
-{#                    </div>#}
-                    <div class="owl-carousel owl-theme owl-loaded owl-drag">
-                        <div class="owl-stage-outer">
-                            <div class="owl-stage">
-                                <div class="owl-item">
-                                    <img src="https://images.newrepublic.com/f414eea56706eb2ea86645d0202e482a198b9d84.jpeg" alt="Obama laugh" class="rounded-xl">
+                <!-- Deal detail section -->
+                <div class="flex flex-col lg:flex-row lg:justify-between pb-1.5">
+                    <!-- Deal company&city name & price info -->
+                    <div class="w-full lg:w-2/6">
+                        <div class="lg:mt-2 text-base text-grey">{{ deals.company.name }}</div>
+                        <div class="text-base text-grey">{{ deals.city.name }}</div>
+
+                        <div class="w-full flex flex-row-reverse justify-between lg:m-8 lg:flex-col">
+                            <div class="flex justify-evenly items-center lg:w-full lg:border-y border-y-black">
+                                <div class="line-through leading-6 text-grey mr-2">{{ deals.getFromPrice|raw }}</div>
+                                <div class="text-2xl leading-6 my-5 flex text-green">{{ deals.getPriceAsHtml|raw }}</div>
+                            </div>
+
+                            <div class="flex text-darkBlue lg:border-b border-black lg:w-full">
+                                <div class="flex justify-center py-4 items-center w-full flex-row lg:flex-col lg:border-r border-black">
+                                    <div >Verkocht: </div>
+                                    <div > {{ deals.getSold }}</div>
                                 </div>
-                                <div class="owl-item">
-                                    <img src="{{ deals.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>
-                                </div>
-                                <div class="owl-item">
-                                    <img src="https://i.ytimg.com/vi/mvoDD_Zr1kQ/hqdefault.jpg" alt="me falling in thoughts" class="rounded-xl">
-                                </div>
-                                <div class="owl-item">
-                                    <img src="https://i.pinimg.com/originals/5a/b0/3f/5ab03feb20b6bc38e7c8811e11241d37.jpg" alt="Me during the project" class="rounded-xl">
+
+                                <div class="hidden lg:flex w-full flex-row lg:flex-col lg:items-center justify-center ">
+                                    <div>Korting:</div>
+                                    <div>{{ deals.getPercentDiscount }}%</div>
                                 </div>
                             </div>
                         </div>
+                        <a href="{{ path('buy') }}">
+                            <div class="flex items-center justify-center bg-green w-3/4 m-auto lg:ml-20 h-20 lg:h-24 rounded-2xl text-white text-2xl lg:text-4xl">
+                                <span>
+                                    Koop nu!
+                                </span>
+                            </div>
+                        </a>
                     </div>
+                    <!-- End Deal company&city name & price info -->
+
+                    <!-- Company Contact Info -->
+                    <div class="shadow-md mt-5 lg:mt-0 pb-5 w-full lg:w-4/12">
+                        <h4 class="text-xl font-semibold my-5 px-4">Contact</h4>
+                        <div class="w-full px-4">
+                            <div id="map" data-location="{{ deals.company.getLatLng }}" class="w-full h-52 my-2.5 rounded-lg"></div>
+                            <div class="shadow-lg">
+                                <a href="tel:{{ deals.company.number }}" class="flex content-start relative items-center justify-between p-4">
+                                    <span class="material-icons mr-8">phone</span>
+                                    <span class="flex-1"> {{ deals.company.number }} </span>
+                                    <span class="material-icons">chevron_right</span>
+                                </a>
+                                <a href="{{ deals.company.website }}" class="flex content-start relative items-center justify-between p-4">
+                                    <span class="material-icons mr-8">language</span>
+                                    <span class="flex-1"> {{ deals.company.website }} </span>
+                                    <span class="material-icons">chevron_right</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Company Contact Info -->
                 </div>
-{#                <img src="https://images.newrepublic.com/f414eea56706eb2ea86645d0202e482a198b9d84.jpeg" alt="Obama laugh" class="rounded-xl">#}
-{#                <img src="{{ deals.getFullImg }}" alt="Deal afbeelding" class="rounded-xl"/>#}
-{#                <img src="https://i.ytimg.com/vi/mvoDD_Zr1kQ/hqdefault.jpg" alt="me falling in thoughts" class="rounded-xl">#}
-{#                <img src="https://i.pinimg.com/originals/5a/b0/3f/5ab03feb20b6bc38e7c8811e11241d37.jpg" alt="Me during the project" class="rounded-xl">#}
-                {{ deals.divIsNew|raw }}
+
+                <!-- Start Description Section -->
+                <div class="description mt-10">
+                    <h4 class="font-medium text-xl">Lees meer</h4>
+                    {{ deals.description|raw }}
+                </div>
+                <!-- End Description Section -->
+
             </div>
-            <div class="title font-medium mt-7 mb-2.5 mx-0 text-xl float-left clear-both">{{ deals.getTitle }}</div>
-            <div class="company mt-2 float-left clear-both text-base">{{ deals.company.name }}</div>
-            <div class="city float-left clear-both text-base">{{ deals.city.name }}</div>
-            <div class="sold float-left clear-left mt-4 text-base">Verkocht: {{ deals.getSold }}</div>
-            <div class="price text-2xl leading-6 float-right mt-3.5 mr-2.5 flex">{{ deals.getPriceAsHtml|raw }}</div>
-            <div class="from line-through text-gray-700	leading-6 text-base float-right mt-3.5 mr-2.5">{{ deals.getFromPrice|raw }}</div>
         </div>
+        <!-- End Description Page -->
     </div>
-    <!-- End Description Section -->
 {% endblock %}
