@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="containerImport flex flex-col bg-lightBlack text-wheat w-full h-full p-5">
+        <p class="w-fit h-fit text-wheat">
+            (☞ﾟヮﾟ)☞ You have been TrOlEd ☜(ﾟヮﾟ☜)
+
+        </p>
+
+        <div class="succes flex flex-col text-wheat">
+            <p class="text-wheat self-center mt-6">
+                Goede nieuws! Jouw data is up to date!
+            </p>
+            <br>
+            <!-- <video controls autoplay> -->
+            <iframe width="560" height="315" src="{{ asset('https://www.youtube.com/embed/PXqcHi2fkXI?autoplay=1') }}" allow="autoplay"></iframe>
+            <!-- </video> -->
+            <p class="text-wheat self-center my-4">
+                Wil je je deals lijst bekijken? Klik op de knop dan om naar de Home pagina te gaan!
+            </p>
+            <a href="{{ path('deal') }}" class="flex self-center w-1/4 m-6">
+                <div class="flex items-center items-center bg-darkGreen m-auto h-24 rounded-2xl text-2xl hover:underline">
+                    <span class="text-wheat font-importBtn p-2.5 text-center hover:text-lightWheat">
+                        Druk nu! (Wie weet, misschien kun je nog iets winnen!)
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}
