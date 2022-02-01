@@ -1,28 +1,25 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	// The require scope
-/******/ 	var __webpack_require__ = {};
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-var __webpack_exports__ = {};
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./public/styles/style.scss":
 /*!**********************************!*\
   !*** ./public/styles/style.scss ***!
   \**********************************/
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
+/***/ (() => {
 
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nHookWebpackError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nTypeError: (intermediate value)(intermediate value)(intermediate value).slice(...).reverse(...).flatMap is not a function\n    at Object.getAllConfigs [as default] (/var/www/html/casus/node_modules/tailwindcss/lib/util/getAllConfigs.js:17:26)\n    at Object.resolveConfig [as default] (/var/www/html/casus/node_modules/tailwindcss/lib/public/resolve-config.js:14:60)\n    at getTailwindConfig (/var/www/html/casus/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:65:52)\n    at /var/www/html/casus/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:124:92\n    at /var/www/html/casus/node_modules/tailwindcss/lib/processTailwindFeatures.js:37:11\n    at plugins (/var/www/html/casus/node_modules/tailwindcss/lib/index.js:22:68)\n    at LazyResult.runOnRoot (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:339:16)\n    at LazyResult.runAsync (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:393:26)\n    at LazyResult.async (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:221:30)\n    at LazyResult.then (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:206:17)\n    at tryRunOrWebpackError (/var/www/html/casus/node_modules/webpack/lib/HookWebpackError.js:88:9)\n    at __webpack_require_module__ (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:4979:12)\n    at __webpack_require__ (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:4936:18)\n    at asyncLib.eachLimit.err (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:5007:20)\n    at symbolIterator (/var/www/html/casus/node_modules/neo-async/async.js:3485:9)\n    at done (/var/www/html/casus/node_modules/neo-async/async.js:3527:9)\n    at Hook.eval [as callAsync] (eval at create (/var/www/html/casus/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:15:1)\n    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/var/www/html/casus/node_modules/tapable/lib/Hook.js:18:14)\n    at asyncLib.eachLimit (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:4914:43)\n    at symbolIterator (/var/www/html/casus/node_modules/neo-async/async.js:3482:9)\n-- inner error --\nError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nTypeError: (intermediate value)(intermediate value)(intermediate value).slice(...).reverse(...).flatMap is not a function\n    at Object.getAllConfigs [as default] (/var/www/html/casus/node_modules/tailwindcss/lib/util/getAllConfigs.js:17:26)\n    at Object.resolveConfig [as default] (/var/www/html/casus/node_modules/tailwindcss/lib/public/resolve-config.js:14:60)\n    at getTailwindConfig (/var/www/html/casus/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:65:52)\n    at /var/www/html/casus/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:124:92\n    at /var/www/html/casus/node_modules/tailwindcss/lib/processTailwindFeatures.js:37:11\n    at plugins (/var/www/html/casus/node_modules/tailwindcss/lib/index.js:22:68)\n    at LazyResult.runOnRoot (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:339:16)\n    at LazyResult.runAsync (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:393:26)\n    at LazyResult.async (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:221:30)\n    at LazyResult.then (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:206:17)\n    at Object.<anonymous> (/var/www/html/casus/node_modules/css-loader/dist/cjs.js!/var/www/html/casus/node_modules/postcss-loader/dist/cjs.js!/var/www/html/casus/node_modules/sass-loader/dist/cjs.js!/var/www/html/casus/public/styles/style.scss:1:7)\n    at compilation.hooks.executeModule.tap (/var/www/html/casus/node_modules/webpack/lib/javascript/JavascriptModulesPlugin.js:432:11)\n    at Hook.eval [as call] (eval at create (/var/www/html/casus/node_modules/tapable/lib/HookCodeFactory.js:19:10), <anonymous>:7:1)\n    at Hook.CALL_DELEGATE [as _call] (/var/www/html/casus/node_modules/tapable/lib/Hook.js:14:14)\n    at tryRunOrWebpackError (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:4981:39)\n    at tryRunOrWebpackError (/var/www/html/casus/node_modules/webpack/lib/HookWebpackError.js:83:7)\n    at __webpack_require_module__ (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:4979:12)\n    at __webpack_require__ (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:4936:18)\n    at asyncLib.eachLimit.err (/var/www/html/casus/node_modules/webpack/lib/Compilation.js:5007:20)\n    at symbolIterator (/var/www/html/casus/node_modules/neo-async/async.js:3485:9)\n\nGenerated code for /var/www/html/casus/node_modules/css-loader/dist/cjs.js!/var/www/html/casus/node_modules/postcss-loader/dist/cjs.js!/var/www/html/casus/node_modules/sass-loader/dist/cjs.js!/var/www/html/casus/public/styles/style.scss\n1 | throw new Error(\"Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\\nTypeError: (intermediate value)(intermediate value)(intermediate value).slice(...).reverse(...).flatMap is not a function\\n    at Object.getAllConfigs [as default] (/var/www/html/casus/node_modules/tailwindcss/lib/util/getAllConfigs.js:17:26)\\n    at Object.resolveConfig [as default] (/var/www/html/casus/node_modules/tailwindcss/lib/public/resolve-config.js:14:60)\\n    at getTailwindConfig (/var/www/html/casus/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:65:52)\\n    at /var/www/html/casus/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:124:92\\n    at /var/www/html/casus/node_modules/tailwindcss/lib/processTailwindFeatures.js:37:11\\n    at plugins (/var/www/html/casus/node_modules/tailwindcss/lib/index.js:22:68)\\n    at LazyResult.runOnRoot (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:339:16)\\n    at LazyResult.runAsync (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:393:26)\\n    at LazyResult.async (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:221:30)\\n    at LazyResult.then (/var/www/html/casus/node_modules/postcss/lib/lazy-result.js:206:17)\");");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__["./public/styles/style.scss"]();
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=main.js.map
